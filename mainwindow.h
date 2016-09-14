@@ -11,7 +11,9 @@
 #include <QListWidgetItem>
 #include <QInputDialog>
 #include <QMainWindow>
-#include <string>
+#include <QString>
+#include <QVector>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
@@ -24,18 +26,28 @@ class MainWindow : public QMainWindow
 public:
     bool buttonStatus;
 
+    QVector<QListWidgetItem> deckCardList;  // dynamic array that holds all the decks
+
+    QListWidgetItem * itemselected;
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    int addDeck();
+    void addDeck(QString title);
+    void removeDeck(QListWidgetItem *item);
 
     bool has_decks();
 
     int decks_amt();
 
     void flipActiveButtons();
-
+    void flipActiveButtons(bool buttonStatus);
     void checkButtons();
+
+    void select_item(QListWidgetItem *item);
+    void deselect_item(QListWidgetItem *item);
+
+    void gotoEditDeckWindow(QListWidgetItem *item);
 
 private slots:
     void on_actionAbout_triggered();
@@ -47,6 +59,14 @@ private slots:
     void on_addDeckButton_clicked();
 
     void on_actionHow_to_Use_triggered();
+
+    void on_deckListWidget_itemClicked(QListWidgetItem *item);
+
+    void on_deleteButton_clicked();
+
+    void on_addCardDeckButton_clicked();
+
+    void on_modifyDeckButton_clicked();
 
 private:
     Ui::MainWindow *ui;

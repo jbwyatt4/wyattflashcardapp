@@ -19,20 +19,14 @@ this->setGeometry(
     )
 );
   ui->setupUi(this);
+
+  itemselected = NULL;
   buttonStatus = false; // a variable for flipActiveButtons
-  //default is false because true disables buttons
-
+  //default is true
   // if you dont have decks, disable buttons
-
   checkButtons();
 
-  QVariant qv;
-  DeckItem d;
-  QListWidgetItem *item = new QListWidgetItem();
-  item->setText("settext text");
-  qv.setValue(d);
-  item->setData(Qt::UserRole, qv);
-  ui->deckListWidget->addItem(item);
+  //DeckItem mid = item->data(Qt::UserRole).value<DeckItem>();
 }
 
 MainWindow::~MainWindow()
@@ -57,27 +51,55 @@ void MainWindow::on_actionHow_to_Use_triggered()
     QDesktopServices::openUrl(QUrl(link));
 }
 
-// flips the clickable status of certain buttons such as modify, delete, etc
 void MainWindow::flipActiveButtons() {
     buttonStatus = !buttonStatus;
-    ui->deleteButton->setDisabled(buttonStatus);
-    ui->modifyDeckButton->setDisabled(buttonStatus);
-    ui->runDeckButton->setDisabled(buttonStatus);
+    flipActiveButtons(buttonStatus);
+}
+
+// flips the clickable status of certain buttons such as modify, delete, etc
+void MainWindow::flipActiveButtons(bool buttonStatus) {
+    ui->deleteButton->setDisabled(!buttonStatus);
+    ui->modifyDeckButton->setDisabled(!buttonStatus);
+    ui->runDeckButton->setDisabled(!buttonStatus);
+    ui->addCardDeckButton->setDisabled(!buttonStatus);
 }
 
 void MainWindow::checkButtons() {
-    if(!has_decks() && buttonStatus == false) {
-        flipActiveButtons();
+    if(!has_decks() || itemselected == NULL) {
+        flipActiveButtons(false);
     }
-    if(has_decks() && buttonStatus == true) {
-        flipActiveButtons();
+    if(has_decks()) {
+        flipActiveButtons(true);
     }
 }
 
-int MainWindow::addDeck()
+void MainWindow::addDeck(QString title)
 {
-    return 0;
+    QVariant qv;
+    DeckItem d(title);
+    QListWidgetItem *item = new QListWidgetItem();
+    item->setText(title);
+    qv.setValue(d);
+    item->setData(Qt::UserRole, qv);
+    ui->deckListWidget->addItem(item);
+
+    this->deckCardList.append(*item);
+
+    return;
 }
+
+void MainWindow::removeDeck(QListWidgetItem *item)
+{
+    // code to handle memory deletion of the flashcards should be in destructor
+
+    // put code to delete json file here
+
+    deselect_item(item);
+    ui->deckListWidget->removeItemWidget(item);
+    delete item;
+
+}
+
 
 // returns true if more than 0 decks
 bool MainWindow::has_decks()
@@ -91,9 +113,25 @@ bool MainWindow::has_decks()
 
 int MainWindow::decks_amt()
 {
-    return 0;
+    return this->deckCardList.count();
 }
 
+void MainWindow::select_item(QListWidgetItem *item)
+{
+    itemselected = item;
+    checkButtons();
+}
+
+// Called when we delete
+void MainWindow::deselect_item(QListWidgetItem *item)
+{
+    itemselected = NULL;
+    checkButtons();
+}
+
+void MainWindow::gotoEditDeckWindow(QListWidgetItem *item) {
+
+}
 
 void MainWindow::on_runDeckButton_clicked()
 {
@@ -117,13 +155,37 @@ void MainWindow::on_addDeckButton_clicked()
     if(ok) {
       // handle no input
       if(text.isEmpty()) {
-
+          QMessageBox msgBox;
+          msgBox.setText("Please put in a name.");
+          msgBox.exec();
       } else {
-
+        addDeck(text);
       }
     } else {
     //not sure how to handle not ok
     }
     // if (ok && !text.isEmpty())
     //   {}
+}
+
+void MainWindow::on_deckListWidget_itemClicked(QListWidgetItem *item)
+{
+    if (item != NULL) {
+        select_item(item);
+    }
+}
+
+void MainWindow::on_deleteButton_clicked()
+{
+    removeDeck(this->itemselected);
+}
+
+void MainWindow::on_addCardDeckButton_clicked()
+{
+    gotoEditDeckWindow(this->itemselected);
+}
+
+void MainWindow::on_modifyDeckButton_clicked()
+{
+    gotoEditDeckWindow(this->itemselected);
 }

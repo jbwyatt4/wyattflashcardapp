@@ -18,16 +18,19 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     decklist.cpp \
     deckitem.cpp \
-    carditem.cpp
+    carditem.cpp \
+    editdeckwindow.cpp
 
 HEADERS  += mainwindow.h \
     addcarddialog.h \
     aboutdialog.h \
     decklist.h \
     deckitem.h \
-    carditem.h
+    carditem.h \
+    editdeckwindow.h
 
 FORMS    += mainwindow.ui \
     addcarddialog.ui \
     aboutdialog.ui \
-    decklist.ui
+    decklist.ui \
+    editdeckwindow.ui
