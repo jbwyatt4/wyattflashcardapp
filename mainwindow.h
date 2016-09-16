@@ -38,7 +38,6 @@ public:
 
     void addDeck(QString title);
     void removeDeck(QListWidgetItem *item);
-    QListWidgetItem * get_itemselected();
 
     bool has_decks();
 
@@ -73,6 +72,9 @@ private slots:
     void on_modifyDeckButton_clicked();
 
     void on_actionSave_triggered();
+
+signals:
+    void get_itemselected(QListWidgetItem *);
 
 private:
     Ui::MainWindow *ui;

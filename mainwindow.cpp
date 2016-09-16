@@ -26,7 +26,7 @@ this->setGeometry(
   checkButtons();
 
 
-  //connect(this, SIGNAL(get_itemselected()), edw, SLOT(editOpenScreen(QListWidgetItem *)));
+  connect(this, SIGNAL(get_itemselected(QListWidgetItem *)), &edw, SLOT(receiveData(QListWidgetItem *)));
 
 }
 
@@ -131,6 +131,7 @@ void MainWindow::deselect_item()
 
 void MainWindow::gotoEditDeckWindow(QListWidgetItem *item) {
 
+    emit(get_itemselected(this->itemselected));
     edw.setModal(true);
     this->hide();
     edw.exec();
@@ -190,10 +191,6 @@ void MainWindow::on_addCardDeckButton_clicked()
 void MainWindow::on_modifyDeckButton_clicked()
 {
     gotoEditDeckWindow(this->itemselected);
-}
-
-QListWidgetItem * MainWindow::get_itemselected() {
-    return this->itemselected;
 }
 
 void MainWindow::on_actionSave_triggered()

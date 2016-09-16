@@ -18,7 +18,6 @@ class EditDeckWindow : public QDialog
 public:
     explicit EditDeckWindow(QWidget *parent = 0);
     ~EditDeckWindow();
-    QListWidgetItem * get_itemselected();
 
 public slots:
     void editOpenScreen(QListWidgetItem *item);
@@ -29,6 +28,7 @@ private slots:
     void on_pushButton_clicked();
 
     void receiveData(QListWidgetItem *q);
+
 
 private:
     Ui::EditDeckWindow *ui;
