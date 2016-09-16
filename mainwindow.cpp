@@ -19,14 +19,15 @@ this->setGeometry(
     )
 );
   ui->setupUi(this);
-
   itemselected = NULL;
   buttonStatus = false; // a variable for flipActiveButtons
   //default is true
   // if you dont have decks, disable buttons
   checkButtons();
 
-  //DeckItem mid = item->data(Qt::UserRole).value<DeckItem>();
+
+  //connect(this, SIGNAL(get_itemselected()), edw, SLOT(editOpenScreen(QListWidgetItem *)));
+
 }
 
 MainWindow::~MainWindow()
@@ -36,8 +37,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionAbout_triggered()
 {
-  AboutDialog aboutDialog2;
-  aboutDialog2.exec();
+  AboutDialog aboutDialog;
+  aboutDialog.exec();
 }
 
 void MainWindow::on_actionQuit_triggered()
@@ -94,10 +95,9 @@ void MainWindow::removeDeck(QListWidgetItem *item)
 
     // put code to delete json file here
 
-    deselect_item(item);
+    deselect_item();
     ui->deckListWidget->removeItemWidget(item);
     delete item;
-
 }
 
 
@@ -123,7 +123,7 @@ void MainWindow::select_item(QListWidgetItem *item)
 }
 
 // Called when we delete
-void MainWindow::deselect_item(QListWidgetItem *item)
+void MainWindow::deselect_item()
 {
     itemselected = NULL;
     checkButtons();
@@ -131,6 +131,10 @@ void MainWindow::deselect_item(QListWidgetItem *item)
 
 void MainWindow::gotoEditDeckWindow(QListWidgetItem *item) {
 
+    edw.setModal(true);
+    this->hide();
+    edw.exec();
+    this->show();
 }
 
 void MainWindow::on_runDeckButton_clicked()
@@ -164,8 +168,6 @@ void MainWindow::on_addDeckButton_clicked()
     } else {
     //not sure how to handle not ok
     }
-    // if (ok && !text.isEmpty())
-    //   {}
 }
 
 void MainWindow::on_deckListWidget_itemClicked(QListWidgetItem *item)
@@ -188,4 +190,13 @@ void MainWindow::on_addCardDeckButton_clicked()
 void MainWindow::on_modifyDeckButton_clicked()
 {
     gotoEditDeckWindow(this->itemselected);
+}
+
+QListWidgetItem * MainWindow::get_itemselected() {
+    return this->itemselected;
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+
 }

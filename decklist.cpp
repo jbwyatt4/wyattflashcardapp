@@ -12,3 +12,8 @@ DeckList::~DeckList()
 {
     delete ui;
 }
+
+void DeckList::on_pushButton_clicked()
+{
+    close();
+}

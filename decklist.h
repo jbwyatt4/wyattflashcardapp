@@ -15,6 +15,9 @@ public:
     explicit DeckList(QWidget *parent = 0);
     ~DeckList();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::DeckList *ui;
 };

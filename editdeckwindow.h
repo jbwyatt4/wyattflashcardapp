@@ -2,6 +2,10 @@
 #define EDITDECKWINDOW_H
 
 #include <QDialog>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QString>
+#include <QVector>
 
 namespace Ui {
 class EditDeckWindow;
@@ -14,6 +18,17 @@ class EditDeckWindow : public QDialog
 public:
     explicit EditDeckWindow(QWidget *parent = 0);
     ~EditDeckWindow();
+    QListWidgetItem * get_itemselected();
+
+public slots:
+    void editOpenScreen(QListWidgetItem *item);
+
+private slots:
+    void on_addCardButton_clicked();
+
+    void on_pushButton_clicked();
+
+    void receiveData(QListWidgetItem *q);
 
 private:
     Ui::EditDeckWindow *ui;

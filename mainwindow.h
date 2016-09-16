@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "aboutdialog.h"
 #include "addcarddialog.h"
+#include "editdeckwindow.h"
 #include "deckitem.h"
 #include <QStyle>
 #include <QDesktopWidget>
@@ -30,11 +31,14 @@ public:
 
     QListWidgetItem * itemselected;
 
+    EditDeckWindow edw;
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
     void addDeck(QString title);
     void removeDeck(QListWidgetItem *item);
+    QListWidgetItem * get_itemselected();
 
     bool has_decks();
 
@@ -45,7 +49,7 @@ public:
     void checkButtons();
 
     void select_item(QListWidgetItem *item);
-    void deselect_item(QListWidgetItem *item);
+    void deselect_item();
 
     void gotoEditDeckWindow(QListWidgetItem *item);
 
@@ -67,6 +71,8 @@ private slots:
     void on_addCardDeckButton_clicked();
 
     void on_modifyDeckButton_clicked();
+
+    void on_actionSave_triggered();
 
 private:
     Ui::MainWindow *ui;

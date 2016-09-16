@@ -6,9 +6,29 @@ EditDeckWindow::EditDeckWindow(QWidget *parent) :
     ui(new Ui::EditDeckWindow)
 {
     ui->setupUi(this);
+
 }
 
 EditDeckWindow::~EditDeckWindow()
 {
     delete ui;
+}
+
+void EditDeckWindow::editOpenScreen(QListWidgetItem *item)
+{
+
+}
+
+void EditDeckWindow::on_addCardButton_clicked()
+{
+
+}
+
+void EditDeckWindow::on_pushButton_clicked()
+{
+    close();
+}
+
+void EditDeckWindow::receiveData(QListWidgetItem * q) {
+
 }
