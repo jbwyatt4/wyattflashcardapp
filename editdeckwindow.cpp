@@ -30,5 +30,6 @@ void EditDeckWindow::on_pushButton_clicked()
 }
 
 void EditDeckWindow::receiveData(QListWidgetItem * q) {
-    this->setWindowTitle( q->data(Qt::UserRole).value );
+    DeckItem d = q->data(Qt::UserRole).value<DeckItem>();
+    this->setWindowTitle(d.get_name());
 }

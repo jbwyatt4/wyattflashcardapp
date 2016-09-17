@@ -25,7 +25,7 @@ this->setGeometry(
   // if you dont have decks, disable buttons
   checkButtons();
 
-
+  // edw is not a poniter, so use reference
   connect(this, SIGNAL(get_itemselected(QListWidgetItem *)), &edw, SLOT(receiveData(QListWidgetItem *)));
 
 }
@@ -86,6 +86,8 @@ void MainWindow::addDeck(QString title)
 
     this->deckCardList.append(*item);
 
+    //DeckItem e = item->data(Qt::UserRole).value<DeckItem>();
+
     return;
 }
 
@@ -93,7 +95,7 @@ void MainWindow::removeDeck(QListWidgetItem *item)
 {
     // code to handle memory deletion of the flashcards should be in destructor
 
-    // put code to delete json file here
+    // FUTURE put code to delete json file here
 
     deselect_item();
     ui->deckListWidget->removeItemWidget(item);

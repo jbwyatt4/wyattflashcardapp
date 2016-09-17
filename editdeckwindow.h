@@ -1,11 +1,22 @@
 #ifndef EDITDECKWINDOW_H
 #define EDITDECKWINDOW_H
 
-#include <QDialog>
+#include "aboutdialog.h"
+#include "addcarddialog.h"
+#include "editdeckwindow.h"
+#include "deckitem.h"
+
+#include <QStyle>
+#include <QDesktopWidget>
+#include <QDesktopServices>
+#include <QUrl>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QInputDialog>
+#include <QMainWindow>
 #include <QString>
 #include <QVector>
+#include <QMessageBox>
 
 namespace Ui {
 class EditDeckWindow;
