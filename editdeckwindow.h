@@ -3,7 +3,6 @@
 
 #include "aboutdialog.h"
 #include "addcarddialog.h"
-#include "editdeckwindow.h"
 #include "deckitem.h"
 
 #include <QStyle>
@@ -30,19 +29,23 @@ public:
     explicit EditDeckWindow(QWidget *parent = 0);
     ~EditDeckWindow();
 
-public slots:
-    void editOpenScreen(QListWidgetItem *item);
+    AddCardDialog addCardDialog;
 
 private slots:
+    void editOpenScreen(QListWidgetItem *item);
+
     void on_addCardButton_clicked();
 
     void on_pushButton_clicked();
 
-    void receiveData(QListWidgetItem *q);
+    void receiveData(QListWidgetItem *q); // MainWindow to EditDeckWindow
 
+    //void receiveAddCardData(QStringList sl ); // AddCardDialog to EditDeckWindow
 
 private:
     Ui::EditDeckWindow *ui;
+    QListWidgetItem * currentItem = NULL;
+
 };
 
 #endif // EDITDECKWINDOW_H

@@ -14,23 +14,25 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    addcarddialog.cpp \
     aboutdialog.cpp \
     decklist.cpp \
     deckitem.cpp \
     carditem.cpp \
-    editdeckwindow.cpp
+    editdeckwindow.cpp \
+    addcarddialog.cpp
 
 HEADERS  += mainwindow.h \
-    addcarddialog.h \
     aboutdialog.h \
     decklist.h \
     deckitem.h \
     carditem.h \
-    editdeckwindow.h
+    editdeckwindow.h \
+    addcarddialog.h
 
 FORMS    += mainwindow.ui \
-    addcarddialog.ui \
     aboutdialog.ui \
     decklist.ui \
-    editdeckwindow.ui
+    editdeckwindow.ui \
+    addcarddialog.ui
+
+OTHER_FILES +=

@@ -133,7 +133,7 @@ void MainWindow::deselect_item()
 
 void MainWindow::gotoEditDeckWindow(QListWidgetItem *item) {
 
-    emit(get_itemselected(this->itemselected));
+    emit(get_itemselected(item));
     edw.setModal(true);
     this->hide();
     edw.exec();

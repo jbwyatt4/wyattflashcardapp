@@ -2,7 +2,7 @@
 #include "ui_addcarddialog.h"
 
 AddCardDialog::AddCardDialog(QWidget *parent) :
-    QMainWindow(parent),
+    QDialog(parent),
     ui(new Ui::AddCardDialog)
 {
     ui->setupUi(this);
@@ -11,4 +11,19 @@ AddCardDialog::AddCardDialog(QWidget *parent) :
 AddCardDialog::~AddCardDialog()
 {
     delete ui;
+}
+
+void AddCardDialog::receiveCardData(QStringList sl){
+
+}
+
+void AddCardDialog::on_buttonBox_accepted()
+{
+    sendAddCardData();
+    close();
+}
+
+void AddCardDialog::on_buttonBox_rejected()
+{
+    close();
 }
