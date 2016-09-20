@@ -13,17 +13,30 @@ AddCardDialog::~AddCardDialog()
     delete ui;
 }
 
+// used for editing
 void AddCardDialog::receiveCardData(QStringList sl){
-
+    ui->cardFront->setText(sl[0]);
+    ui->cardBack->setText(sl[1]);
 }
 
 void AddCardDialog::on_buttonBox_accepted()
 {
-    sendAddCardData();
+    QStringList sl;
+    sl.append(ui->cardFront->text());
+    sl.append(ui->cardBack->text());
+    emit sendAddCardData(sl);
     close();
+    clearLineEdits();
 }
 
 void AddCardDialog::on_buttonBox_rejected()
 {
     close();
+    clearLineEdits();
+}
+
+// dialog will keep the last input we gave it w/o this
+void AddCardDialog::clearLineEdits() {
+    ui->cardFront->setText("");
+    ui->cardBack->setText("");
 }

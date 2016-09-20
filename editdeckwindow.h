@@ -42,6 +42,7 @@ private slots:
 
     //void receiveAddCardData(QStringList sl ); // AddCardDialog to EditDeckWindow
 
+    void receiveAddCardData(QStringList sl);
 private:
     Ui::EditDeckWindow *ui;
     QListWidgetItem * currentItem = NULL;

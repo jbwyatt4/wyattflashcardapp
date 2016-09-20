@@ -15,8 +15,10 @@ public:
     explicit AddCardDialog(QWidget *parent = 0);
     ~AddCardDialog();
 
+    void clearLineEdits();
+
 signals:
-    void sendAddCardData();
+    void sendAddCardData(QStringList sl);
 
 private slots:
     void on_buttonBox_accepted();

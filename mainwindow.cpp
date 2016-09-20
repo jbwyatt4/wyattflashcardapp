@@ -32,6 +32,7 @@ this->setGeometry(
 
 MainWindow::~MainWindow()
 {
+  disconnect(this, SIGNAL(get_itemselected(QListWidgetItem *)), &edw, SLOT(receiveData(QListWidgetItem *)));
   delete ui;
 }
 
@@ -100,6 +101,7 @@ void MainWindow::removeDeck(QListWidgetItem *item)
     deselect_item();
     ui->deckListWidget->removeItemWidget(item);
     delete item;
+    this->itemselected = NULL;
 }
 
 

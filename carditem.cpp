@@ -1,22 +1,29 @@
 #include "carditem.h"
 
 CardItem::CardItem()
-{
+{}
 
-
+// delete all custom items
+CardItem::~CardItem(){
+    void deleteAllCards();
 }
 
 QString CardItem::get_card_front()
 {
-    return "";
+    return front;
 }
 
 QString CardItem::get_card_back()
 {
-    return "";
+    return back;
 }
 
-void CardItem::set_front_back()
+void CardItem::set_front_back(QString front, QString back)
 {
+    this->front = front;
+    this->back = back;
+}
+
+void CardItem::deleteAllCards() {
 
 }
