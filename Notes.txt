@@ -1,5 +1,5 @@
+-Add shortcuts
 MainDialog
-add shortcuts
 ctrl-s to start cardslideshow
 
 CardSlideShow
