@@ -35,4 +35,5 @@ FORMS    += mainwindow.ui \
     editdeckwindow.ui \
     addcarddialog.ui
 
-OTHER_FILES +=
+OTHER_FILES += \
+    Notes.txt

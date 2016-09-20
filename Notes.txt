@@ -1,0 +1,9 @@
+MainDialog
+add shortcuts
+ctrl-s to start cardslideshow
+
+CardSlideShow
+a last card
+d next card
+s flip card
+w save card (reshuffle back, default state as front again)
