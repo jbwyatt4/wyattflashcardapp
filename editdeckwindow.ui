@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Wyatt's Simple Flashcard App</string>
   </property>
   <widget class="QListWidget" name="cardListWidget">
    <property name="geometry">

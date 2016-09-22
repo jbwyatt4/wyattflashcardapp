@@ -13,6 +13,7 @@ EditDeckWindow::EditDeckWindow(QWidget *parent) :
 
 EditDeckWindow::~EditDeckWindow()
 {
+    disconnect(&addCardDialog, SIGNAL(sendAddCardData(QStringList)), this, SLOT(receiveAddCardData(QStringList)));
     delete ui;
 }
 

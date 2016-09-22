@@ -1,3 +1,7 @@
+-Misc Design Notes
+--Use /.local directory to store data.
+handles mutiple users, AND mutiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)
+
 -Add shortcuts
 MainDialog
 ctrl-s to start cardslideshow
