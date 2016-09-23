@@ -8,11 +8,11 @@
 class CardItem : public QListWidgetItem
 {
 public:
-    CardItem(QString front, QString back);
+    explicit CardItem(const QString & nfront, const QString & nback);
     ~CardItem();
     QString get_card_front();
     QString get_card_back();
-    void set_front_back(QString front, QString back);
+    void set_front_back(const QString & front, const QString & back);
 
 private:
     QString front;
