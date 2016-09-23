@@ -1,9 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "aboutdialog.h"
-#include "addcarddialog.h"
-#include "editdeckwindow.h"
-#include "deckitem.h"
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QDesktopServices>
@@ -15,6 +11,11 @@
 #include <QString>
 #include <QVector>
 #include <QMessageBox>
+
+#include "aboutdialog.h"
+#include "addcarddialog.h"
+#include "editdeckwindow.h"
+#include "deckitem.h"
 
 namespace Ui {
 class MainWindow;

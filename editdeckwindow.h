@@ -1,11 +1,6 @@
 #ifndef EDITDECKWINDOW_H
 #define EDITDECKWINDOW_H
 
-#include "aboutdialog.h"
-#include "addcarddialog.h"
-#include "deckitem.h"
-#include "carditem.h"
-
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QDesktopServices>
@@ -17,6 +12,11 @@
 #include <QString>
 #include <QVector>
 #include <QMessageBox>
+
+#include "aboutdialog.h"
+#include "addcarddialog.h"
+#include "deckitem.h"
+#include "carditem.h"
 
 namespace Ui {
 class EditDeckWindow;

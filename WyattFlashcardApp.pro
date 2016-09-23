@@ -25,8 +25,7 @@ HEADERS  += mainwindow.h \
     deckitem.h \
     carditem.h \
     editdeckwindow.h \
-    addcarddialog.h \
-    defs.h
+    addcarddialog.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \
