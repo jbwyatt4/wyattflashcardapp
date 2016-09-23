@@ -1,11 +1,11 @@
 #include "deckitem.h"
 
-DeckItem::DeckItem()
+/*DeckItem::DeckItem()
 {
-// qt seems to require a default cosnturcctor or I just dont remember c++
-}
+// qt seems to require a default consturcctor or I just dont remember c++
+}*/
 
-DeckItem::DeckItem(QString name)
+DeckItem::DeckItem(const QString &name)
 {
     this->name = name;
 }

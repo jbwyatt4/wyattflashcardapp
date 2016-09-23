@@ -1,6 +1,8 @@
 #ifndef DECKITEM_H
 #define DECKITEM_H
 
+#include "carditem.h"
+
 #include <QMetaType>
 #include <QString>
 #include <QVector>
@@ -9,19 +11,16 @@
 // where I got the info for using qvariant with qlistwidgetitem
 // http://www.herculesoft.com/blog/add-extra-data-on-qlistwidgetitem-with-its-setdata.html
 
-class DeckItem
+class DeckItem : public QListWidgetItem
 {
 public:
-    DeckItem();
-    DeckItem(QString name);
+    //DeckItem();
+    explicit DeckItem(const QString & name);
     QString get_name();
 
-    QVector<QListWidgetItem> cardList;  // dynamic array that holds all the cards in a deck
+    QVector<CardItem> cardList;  // dynamic array that holds all the cards in a deck
  private:
     QString name;
 };
-
-Q_DECLARE_METATYPE(DeckItem)
-
 
 #endif // DECKITEM_H
