@@ -4,6 +4,7 @@
 #include "aboutdialog.h"
 #include "addcarddialog.h"
 #include "deckitem.h"
+#include "carditem.h"
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -26,10 +27,17 @@ class EditDeckWindow : public QDialog
     Q_OBJECT
 
 public:
+    bool buttonStatus;
+
     explicit EditDeckWindow(QWidget *parent = 0);
     ~EditDeckWindow();
 
     AddCardDialog addCardDialog;
+    void checkButtons();
+    int cards_amt();
+    bool has_cards();
+    void flipActiveButtons();
+    void flipActiveButtons(bool buttonStatus);
 
 private slots:
     void editOpenScreen(QListWidgetItem *item);
@@ -43,9 +51,11 @@ private slots:
     //void receiveAddCardData(QStringList sl ); // AddCardDialog to EditDeckWindow
 
     void receiveAddCardData(QStringList sl);
+
 private:
     Ui::EditDeckWindow *ui;
-    QListWidgetItem * currentItem = NULL;
+    QListWidgetItem * currentDeck = NULL;
+    QListWidgetItem * itemSelected = NULL;
 
 };
 

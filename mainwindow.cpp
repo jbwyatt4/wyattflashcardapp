@@ -19,7 +19,7 @@ this->setGeometry(
     )
 );
   ui->setupUi(this);
-  itemselected = NULL;
+  itemSelected = NULL;
   buttonStatus = false; // a variable for flipActiveButtons
   //default is true
   // if you dont have decks, disable buttons
@@ -60,14 +60,16 @@ void MainWindow::flipActiveButtons() {
 
 // flips the clickable status of certain buttons such as modify, delete, etc
 void MainWindow::flipActiveButtons(bool buttonStatus) {
-    ui->deleteButton->setDisabled(!buttonStatus);
-    ui->modifyDeckButton->setDisabled(!buttonStatus);
-    ui->runDeckButton->setDisabled(!buttonStatus);
-    ui->addCardDeckButton->setDisabled(!buttonStatus);
+    buttonStatus = !buttonStatus;
+
+    ui->deleteButton->setDisabled(buttonStatus);
+    ui->modifyDeckButton->setDisabled(buttonStatus);
+    ui->runDeckButton->setDisabled(buttonStatus);
+    ui->addCardDeckButton->setDisabled(buttonStatus);
 }
 
 void MainWindow::checkButtons() {
-    if(!has_decks() || itemselected == NULL) {
+    if(!has_decks() || itemSelected == NULL) {
         flipActiveButtons(false);
     }
     if(has_decks()) {
@@ -101,7 +103,7 @@ void MainWindow::removeDeck(QListWidgetItem *item)
     deselect_item();
     ui->deckListWidget->removeItemWidget(item);
     delete item;
-    this->itemselected = NULL;
+    this->itemSelected = NULL;
 }
 
 
@@ -122,14 +124,14 @@ int MainWindow::decks_amt()
 
 void MainWindow::select_item(QListWidgetItem *item)
 {
-    itemselected = item;
+    itemSelected = item;
     checkButtons();
 }
 
 // Called when we delete
 void MainWindow::deselect_item()
 {
-    itemselected = NULL;
+    itemSelected = NULL;
     checkButtons();
 }
 
@@ -184,17 +186,17 @@ void MainWindow::on_deckListWidget_itemClicked(QListWidgetItem *item)
 
 void MainWindow::on_deleteButton_clicked()
 {
-    removeDeck(this->itemselected);
+    removeDeck(this->itemSelected);
 }
 
 void MainWindow::on_addCardDeckButton_clicked()
 {
-    gotoEditDeckWindow(this->itemselected);
+    gotoEditDeckWindow(this->itemSelected);
 }
 
 void MainWindow::on_modifyDeckButton_clicked()
 {
-    gotoEditDeckWindow(this->itemselected);
+    gotoEditDeckWindow(this->itemSelected);
 }
 
 void MainWindow::on_actionSave_triggered()

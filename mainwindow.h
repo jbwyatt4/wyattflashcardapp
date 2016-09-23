@@ -29,7 +29,7 @@ public:
 
     QVector<QListWidgetItem> deckCardList;  // dynamic array that holds all the decks
 
-    QListWidgetItem * itemselected;
+    QListWidgetItem * itemSelected;
 
     EditDeckWindow edw;
 
