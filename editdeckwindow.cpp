@@ -46,13 +46,7 @@ void EditDeckWindow::receiveData(QListWidgetItem * q) { // from MainWindow
 }
 
 void EditDeckWindow::receiveAddCardData(QStringList sl) {
-    /*QVariant qv;
-    CardItem d;
-    d.set_front_back(sl[0], sl[1]);
-    QListWidgetItem *card = new QListWidgetItem();
-    card->setText(sl[0]);
-    qv.setValue(d);
-    card->setData(Qt::UserRole, qv);
-    //this->currentItem->data()
-    ui->cardListWidget->addItem(card);*/
+
+    CardItem * card = new CardItem(sl[0], sl[1]);
+    ui->cardListWidget->addItem(card);
 }

@@ -12,6 +12,10 @@ qlistwidgetitem and pass them to the qlistwidget.
 
 Replace custom dialog with a QAbout dialog??
 
+-Implement
+randomize copied list
+guarantee no unique names
+
 -Misc Design Notes
 --Use /.local directory to store data.
 handles mutiple users, AND mutiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)
