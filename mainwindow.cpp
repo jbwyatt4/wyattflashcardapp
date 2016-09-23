@@ -78,7 +78,7 @@ void MainWindow::checkButtons() {
 
 void MainWindow::addDeck(QString title)
 {
-    QVariant qv;
+    /*QVariant qv;
     DeckItem d(title);
     QListWidgetItem *item = new QListWidgetItem();
     item->setText(title);
@@ -89,6 +89,7 @@ void MainWindow::addDeck(QString title)
     this->deckCardList.append(*item);
 
     //DeckItem e = item->data(Qt::UserRole).value<DeckItem>();
+*/
 
     return;
 }
