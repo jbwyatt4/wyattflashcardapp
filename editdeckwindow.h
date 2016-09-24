@@ -13,7 +13,6 @@
 #include <QVector>
 #include <QMessageBox>
 
-#include "aboutdialog.h"
 #include "addcarddialog.h"
 #include "deckitem.h"
 #include "carditem.h"
@@ -46,16 +45,18 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void receiveData(QListWidgetItem *q); // MainWindow to EditDeckWindow
+    void receiveData(DeckItem *q); // MainWindow to EditDeckWindow
 
     //void receiveAddCardData(QStringList sl ); // AddCardDialog to EditDeckWindow
 
     void receiveAddCardData(QStringList sl);
 
+    void on_editCardButton_clicked();
+
 private:
     Ui::EditDeckWindow *ui;
-    QListWidgetItem * currentDeck = NULL;
-    QListWidgetItem * itemSelected = NULL;
+    DeckItem * currentDeck = NULL;
+    CardItem * itemSelected = NULL;
 
 };
 

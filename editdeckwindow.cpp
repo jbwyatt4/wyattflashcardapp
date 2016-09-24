@@ -38,13 +38,12 @@ void EditDeckWindow::on_addCardButton_clicked()
 void EditDeckWindow::on_pushButton_clicked()
 {
     close();
+    this->ui->pushButton->setCheckable(false);
 }
 
-void EditDeckWindow::receiveData(QListWidgetItem * q) { // from MainWindow
-    this->itemSelected = q;
-    //DeckItem * d = &q->data(Qt::UserRole).value<DeckItem>();
-    //this->currentDeck = d;
-    //this->setWindowTitle(d->get_name());
+void EditDeckWindow::receiveData(DeckItem *q) { // from MainWindow
+    this->currentDeck = q;
+    this->setWindowTitle(this->currentDeck->get_name());
     // we may also need to select the item in the list widget to avoid bugs with the user clicking
     // not sure how to do this
 }
@@ -53,7 +52,7 @@ void EditDeckWindow::receiveAddCardData(QStringList sl) {
 
     CardItem * card = new CardItem(sl[0], sl[1]);
     this->itemSelected = card;
-    //this->cardList.append(*card);
+    this->currentDeck->cardList.append(card);
     ui->cardListWidget->addItem(card);
     checkButtons();
 }
@@ -90,5 +89,18 @@ bool EditDeckWindow::has_cards()
 
 int EditDeckWindow::cards_amt()
 {
-    return 0;//this->cardList.count();
+    if (this->currentDeck == NULL) {
+        return 0;
+    } else {
+        return this->currentDeck->cardList.count();
+    }
+
+}
+
+void EditDeckWindow::on_editCardButton_clicked()
+{
+    QStringList sl;
+    sl.append(this->itemSelected->get_card_front());
+    sl.append(this->itemSelected->get_card_back());
+    //emit(sendAddCardData(sl));
 }

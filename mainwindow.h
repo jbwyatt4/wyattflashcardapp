@@ -28,9 +28,9 @@ class MainWindow : public QMainWindow
 public:
     bool buttonStatus;
 
-    QVector<QListWidgetItem> deckCardList;  // dynamic array that holds all the decks
+    QVector<DeckItem *> deckCardList;  // dynamic array that holds all the decks
 
-    QListWidgetItem * itemSelected;
+    DeckItem * itemSelected;
 
     EditDeckWindow edw;
 
@@ -38,7 +38,7 @@ public:
     ~MainWindow();
 
     void addDeck(QString title);
-    void removeDeck(QListWidgetItem *item);
+    void removeDeck(DeckItem *item);
 
     bool has_decks();
 
@@ -48,10 +48,10 @@ public:
     void flipActiveButtons(bool buttonStatus);
     void checkButtons();
 
-    void select_item(QListWidgetItem *item);
+    void select_item(DeckItem *item);
     void deselect_item();
 
-    void gotoEditDeckWindow(QListWidgetItem *item);
+    void gotoEditDeckWindow(DeckItem *item);
 
 private slots:
     void on_actionAbout_triggered();
@@ -74,8 +74,10 @@ private slots:
 
     void on_actionSave_triggered();
 
+    void on_renameDeckButton_clicked();
+
 signals:
-    void get_itemselected(QListWidgetItem *);
+    void get_itemselected(DeckItem *);
 
 private:
     Ui::MainWindow *ui;

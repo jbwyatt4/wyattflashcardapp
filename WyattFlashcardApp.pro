@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = WyattFlashcardApp
 TEMPLATE = app
-
+#QMAKE_CXXFLAGS += -std=c++0x # how to add a qt flag
 
 SOURCES += main.cpp\
         mainwindow.cpp \

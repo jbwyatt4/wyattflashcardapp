@@ -25,13 +25,13 @@ this->setGeometry(
   checkButtons();
 
   // edw is not a poniter, so use reference
-  connect(this, SIGNAL(get_itemselected(QListWidgetItem *)), &edw, SLOT(receiveData(QListWidgetItem *)));
+  connect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
 
 }
 
 MainWindow::~MainWindow()
 {
-  disconnect(this, SIGNAL(get_itemselected(QListWidgetItem *)), &edw, SLOT(receiveData(QListWidgetItem *)));
+  disconnect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
   delete ui;
 }
 
@@ -65,6 +65,7 @@ void MainWindow::flipActiveButtons(bool buttonStatus) {
     ui->modifyDeckButton->setDisabled(buttonStatus);
     ui->runDeckButton->setDisabled(buttonStatus);
     ui->addCardDeckButton->setDisabled(buttonStatus);
+    ui->renameDeckButton->setDisabled(buttonStatus);
 }
 
 void MainWindow::checkButtons() {
@@ -78,6 +79,9 @@ void MainWindow::checkButtons() {
 
 void MainWindow::addDeck(QString title)
 {
+    DeckItem * deck = new DeckItem(title);
+    ui->deckListWidget->addItem(deck);
+    this->deckCardList.append(deck);
     /*QVariant qv;
     DeckItem d(title);
     QListWidgetItem *item = new QListWidgetItem();
@@ -94,7 +98,7 @@ void MainWindow::addDeck(QString title)
     return;
 }
 
-void MainWindow::removeDeck(QListWidgetItem *item)
+void MainWindow::removeDeck(DeckItem *item)
 {
     // code to handle memory deletion of the flashcards should be in destructor
 
@@ -122,7 +126,7 @@ int MainWindow::decks_amt()
     return this->deckCardList.count();
 }
 
-void MainWindow::select_item(QListWidgetItem *item)
+void MainWindow::select_item(DeckItem *item)
 {
     itemSelected = item;
     checkButtons();
@@ -135,8 +139,9 @@ void MainWindow::deselect_item()
     checkButtons();
 }
 
-void MainWindow::gotoEditDeckWindow(QListWidgetItem *item) {
+void MainWindow::gotoEditDeckWindow(DeckItem *item) {
 
+    item->get_name();
     emit(get_itemselected(item));
     edw.setModal(true);
     this->hide();
@@ -180,13 +185,15 @@ void MainWindow::on_addDeckButton_clicked()
 void MainWindow::on_deckListWidget_itemClicked(QListWidgetItem *item)
 {
     if (item != NULL) {
-        select_item(item);
+        DeckItem *a = dynamic_cast<DeckItem*>(item);
+        select_item(a);
     }
 }
 
 void MainWindow::on_deleteButton_clicked()
 {
     removeDeck(this->itemSelected);
+    flipActiveButtons(false); // deselect buttons after delete
 }
 
 void MainWindow::on_addCardDeckButton_clicked()
@@ -202,4 +209,25 @@ void MainWindow::on_modifyDeckButton_clicked()
 void MainWindow::on_actionSave_triggered()
 {
 
+}
+
+void MainWindow::on_renameDeckButton_clicked()
+{
+    bool ok;
+
+    QString text = QInputDialog::getText(this, tr("Type Name"),
+                     tr("New Flash Card Deck Name:"), QLineEdit::Normal,
+                     NULL, &ok);
+    if(ok) {
+      // handle no input
+      if(text.isEmpty()) {
+          QMessageBox msgBox;
+          msgBox.setText("Please put in a name.");
+          msgBox.exec();
+      } else {
+        this->itemSelected->setText(text);
+      }
+    } else {
+    //not sure how to handle not ok
+    }
 }
