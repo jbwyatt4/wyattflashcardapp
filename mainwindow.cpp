@@ -82,20 +82,6 @@ void MainWindow::addDeck(QString title)
     DeckItem * deck = new DeckItem(title);
     ui->deckListWidget->addItem(deck);
     this->deckCardList.append(deck);
-    /*QVariant qv;
-    DeckItem d(title);
-    QListWidgetItem *item = new QListWidgetItem();
-    item->setText(title);
-    qv.setValue(d);
-    item->setData(Qt::UserRole, qv);
-    ui->deckListWidget->addItem(item);
-
-    this->deckCardList.append(*item);
-
-    //DeckItem e = item->data(Qt::UserRole).value<DeckItem>();
-*/
-
-    return;
 }
 
 void MainWindow::removeDeck(DeckItem *item)

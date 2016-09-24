@@ -8,7 +8,7 @@ CardItem::CardItem()
 CardItem::CardItem(QString nfront, QString nback)
 {
     set_front_back(nfront, nback);
-    QListWidgetItem(nfront.toStdString().data()); //complains about a shadow parameter without converting to char array, means it's using a different constructor, give a c char array
+    QListWidgetItem(); //complains about a shadow parameter without converting to char array, means it's using a different constructor, give a c char array
     this->setText(nfront);
 
 }

@@ -7,7 +7,12 @@ EditDeckWindow::EditDeckWindow(QWidget *parent) :
 {
     buttonStatus = false;
     ui->setupUi(this);
+    // get data from addCardDialog
     connect(&addCardDialog, SIGNAL(sendAddCardData(QStringList)), this, SLOT(receiveAddCardData(QStringList)));
+    connect(&addCardDialog, SIGNAL(sendEditCardData(QStringList)), this, SLOT(receiveEditCardData(QStringList)));
+    // send data to addCardDialog
+    connect(this, SIGNAL(sendEditCardDataToEdit(QStringList)), &addCardDialog, SLOT(receiveCardData(QStringList)));
+
     checkButtons();
 
 }
@@ -38,14 +43,23 @@ void EditDeckWindow::on_addCardButton_clicked()
 void EditDeckWindow::on_pushButton_clicked()
 {
     close();
-    this->ui->pushButton->setCheckable(false);
+    clearData();
 }
 
 void EditDeckWindow::receiveData(DeckItem *q) { // from MainWindow
     this->currentDeck = q;
     this->setWindowTitle(this->currentDeck->get_name());
-    // we may also need to select the item in the list widget to avoid bugs with the user clicking
-    // not sure how to do this
+    ui->cardListWidget->clear();
+    /*QVector<CardItem>::iterator * it = this->currentDeck->cardList.begin();
+    QVector<CardItem>::iterator * end = this->currentDeck->cardList.end();
+    for(;it != end; it++) {
+        this->currentDeck->cardList.get(it);
+    }*/
+    QVectorIterator<CardItem *> i(this->currentDeck->cardList);
+    while(i.hasNext()) {
+        this->ui->cardListWidget->addItem(i.next());
+    }
+    // because buttons are grayed out when none is selected do not have to select list item widget
 }
 
 void EditDeckWindow::receiveAddCardData(QStringList sl) {
@@ -54,6 +68,14 @@ void EditDeckWindow::receiveAddCardData(QStringList sl) {
     this->itemSelected = card;
     this->currentDeck->cardList.append(card);
     ui->cardListWidget->addItem(card);
+    checkButtons();
+}
+
+void EditDeckWindow::receiveEditCardData(QStringList sl) {
+
+    this->itemSelected->set_front_back(sl[0], sl[1]);
+    this->itemSelected->setText(sl[0]);
+    //ui->cardListWidget->addItem(card);
     checkButtons();
 }
 
@@ -102,5 +124,11 @@ void EditDeckWindow::on_editCardButton_clicked()
     QStringList sl;
     sl.append(this->itemSelected->get_card_front());
     sl.append(this->itemSelected->get_card_back());
-    //emit(sendAddCardData(sl));
+    emit(sendEditCardDataToEdit(sl));
+    addCardDialog.setModal(true);
+    addCardDialog.show(); //don't know why
+}
+
+void EditDeckWindow::clearData() {
+    this->ui->cardListWidget->clear();
 }

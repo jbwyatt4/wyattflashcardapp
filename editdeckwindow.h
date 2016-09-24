@@ -12,6 +12,7 @@
 #include <QString>
 #include <QVector>
 #include <QMessageBox>
+#include <QVectorIterator>
 
 #include "addcarddialog.h"
 #include "deckitem.h"
@@ -37,6 +38,7 @@ public:
     bool has_cards();
     void flipActiveButtons();
     void flipActiveButtons(bool buttonStatus);
+    void clearData();
 
 private slots:
     void editOpenScreen(QListWidgetItem *item);
@@ -47,11 +49,14 @@ private slots:
 
     void receiveData(DeckItem *q); // MainWindow to EditDeckWindow
 
-    //void receiveAddCardData(QStringList sl ); // AddCardDialog to EditDeckWindow
-
     void receiveAddCardData(QStringList sl);
 
+    void receiveEditCardData(QStringList sl);
+
     void on_editCardButton_clicked();
+
+signals:
+    void sendEditCardDataToEdit(QStringList);
 
 private:
     Ui::EditDeckWindow *ui;

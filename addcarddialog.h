@@ -19,6 +19,7 @@ public:
 
 signals:
     void sendAddCardData(QStringList sl);
+    void sendEditCardData(QStringList sl);
 
 private slots:
     void on_buttonBox_accepted();
