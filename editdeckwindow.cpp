@@ -136,7 +136,9 @@ void EditDeckWindow::clearData() {
     // do not use, deletes all data in the reference
     //this->ui->cardListWidget->clear();
 
-    this->ui->cardListWidget->takeItem(0);
+    for(; this->ui->cardListWidget->count() > 0 ;) {
+        this->ui->cardListWidget->takeItem(0);
+    }
 }
 
 // Overrides close button provided by OS

@@ -82,6 +82,8 @@ void MainWindow::addDeck(QString title)
     DeckItem * deck = new DeckItem(title);
     ui->deckListWidget->addItem(deck);
     this->deckCardList.append(deck);
+    ui->deckListWidget->setCurrentItem(deck);
+    select_item(deck);
 }
 
 void MainWindow::removeDeck(DeckItem *item)
@@ -222,4 +224,14 @@ void MainWindow::on_renameDeckButton_clicked()
     } else {
     //not sure how to handle not ok
     }
+}
+
+void MainWindow::on_deckListWidget_itemSelectionChanged()
+{
+
+}
+
+void MainWindow::on_deckListWidget_itemChanged(QListWidgetItem *item)
+{
+
 }

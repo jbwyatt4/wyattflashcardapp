@@ -76,6 +76,10 @@ private slots:
 
     void on_renameDeckButton_clicked();
 
+    void on_deckListWidget_itemSelectionChanged();
+
+    void on_deckListWidget_itemChanged(QListWidgetItem *item);
+
 signals:
     void get_itemselected(DeckItem *);
 
