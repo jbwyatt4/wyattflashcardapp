@@ -91,7 +91,14 @@ void MainWindow::removeDeck(DeckItem *item)
     // FUTURE put code to delete json file here
 
     deselect_item();
-    ui->deckListWidget->removeItemWidget(item);
+    // not the correct way to remove an item, qt will try to manage it, it isn't good at it with inherited objects
+    // in cardlist in the deck, when you delete a card it leaves behind a dead object with qstrings set to "" if you use the below method for cards, untested for the decks in decklist
+    //ui->deckListWidget->removeItemWidget(item);
+    // first set the current item to get the row
+    this->ui->deckListWidget->setCurrentItem(item);
+    // then have qt pop off the object from the list, we already have the reference so we don't ahve to catch it
+    this->ui->deckListWidget->takeItem(this->ui->deckListWidget->currentRow());
+    // now delete
     delete item;
     this->itemSelected = NULL;
 }
@@ -127,7 +134,6 @@ void MainWindow::deselect_item()
 
 void MainWindow::gotoEditDeckWindow(DeckItem *item) {
 
-    item->get_name();
     emit(get_itemselected(item));
     edw.setModal(true);
     this->hide();

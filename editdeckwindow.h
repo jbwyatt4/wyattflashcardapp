@@ -59,9 +59,12 @@ signals:
     void sendEditCardDataToEdit(QStringList);
 
 private:
+    void reject();
+
     Ui::EditDeckWindow *ui;
     DeckItem * currentDeck = NULL;
     CardItem * itemSelected = NULL;
+
 
 };
 

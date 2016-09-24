@@ -20,6 +20,9 @@ EditDeckWindow::EditDeckWindow(QWidget *parent) :
 EditDeckWindow::~EditDeckWindow()
 {
     disconnect(&addCardDialog, SIGNAL(sendAddCardData(QStringList)), this, SLOT(receiveAddCardData(QStringList)));
+    disconnect(&addCardDialog, SIGNAL(sendEditCardData(QStringList)), this, SLOT(receiveEditCardData(QStringList)));
+    disconnect(this, SIGNAL(sendEditCardDataToEdit(QStringList)), &addCardDialog, SLOT(receiveCardData(QStringList)));
+
     delete ui;
 }
 
@@ -44,17 +47,14 @@ void EditDeckWindow::on_pushButton_clicked()
 {
     close();
     clearData();
+    QString("temp");
 }
 
 void EditDeckWindow::receiveData(DeckItem *q) { // from MainWindow
     this->currentDeck = q;
     this->setWindowTitle(this->currentDeck->get_name());
     ui->cardListWidget->clear();
-    /*QVector<CardItem>::iterator * it = this->currentDeck->cardList.begin();
-    QVector<CardItem>::iterator * end = this->currentDeck->cardList.end();
-    for(;it != end; it++) {
-        this->currentDeck->cardList.get(it);
-    }*/
+
     QVectorIterator<CardItem *> i(this->currentDeck->cardList);
     while(i.hasNext()) {
         this->ui->cardListWidget->addItem(i.next());
@@ -66,7 +66,9 @@ void EditDeckWindow::receiveAddCardData(QStringList sl) {
 
     CardItem * card = new CardItem(sl[0], sl[1]);
     this->itemSelected = card;
+
     this->currentDeck->cardList.append(card);
+
     ui->cardListWidget->addItem(card);
     checkButtons();
 }
@@ -75,6 +77,7 @@ void EditDeckWindow::receiveEditCardData(QStringList sl) {
 
     this->itemSelected->set_front_back(sl[0], sl[1]);
     this->itemSelected->setText(sl[0]);
+    // have to remove and readd element? I think you should seek help on irc for this one
     //ui->cardListWidget->addItem(card);
     checkButtons();
 }
@@ -130,5 +133,27 @@ void EditDeckWindow::on_editCardButton_clicked()
 }
 
 void EditDeckWindow::clearData() {
-    this->ui->cardListWidget->clear();
+    // do not use, deletes all data in the reference
+    //this->ui->cardListWidget->clear();
+
+    this->ui->cardListWidget->takeItem(0);
+}
+
+// Overrides close button provided by OS
+void EditDeckWindow::reject()
+{
+    clearData();
+    QDialog::reject();
+
+    // message box ask to close, likely wont use in this program
+    /*QMessageBox::StandardButton resBtn = QMessageBox::Yes;
+    if (changes) {
+        resBtn = QMessageBox::question( this, APP_NAME,
+                                        tr("Are you sure?\n"),
+                                        QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                        QMessageBox::Yes);
+    }
+    if (resBtn == QMessageBox::Yes) {
+        QDialog::reject();
+    }*/
 }
