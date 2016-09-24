@@ -71,6 +71,7 @@ void EditDeckWindow::receiveAddCardData(QStringList sl) {
 
     ui->cardListWidget->addItem(card);
     checkButtons();
+    ui->cardListWidget->setCurrentItem(card);
 }
 
 void EditDeckWindow::receiveEditCardData(QStringList sl) {
@@ -84,6 +85,7 @@ void EditDeckWindow::receiveEditCardData(QStringList sl) {
     // have to remove and readd element? I think you should seek help on irc for this one
     //ui->cardListWidget->addItem(this->itemSelected);
     checkButtons();
+    ui->cardListWidget->setCurrentItem(this->itemSelected);
 }
 
 void EditDeckWindow::checkButtons() {
