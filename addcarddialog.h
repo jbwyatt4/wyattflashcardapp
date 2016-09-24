@@ -31,6 +31,7 @@ private slots:
 
 private:
     Ui::AddCardDialog *ui;
+    bool setEdit;
 };
 
 #endif // ADDCARDDIALOG_H

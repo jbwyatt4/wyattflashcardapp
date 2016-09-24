@@ -5,6 +5,7 @@ AddCardDialog::AddCardDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddCardDialog)
 {
+    setEdit = false;
     ui->setupUi(this);
 }
 
@@ -24,7 +25,12 @@ void AddCardDialog::on_buttonBox_accepted()
     QStringList sl;
     sl.append(ui->cardFront->text());
     sl.append(ui->cardBack->text());
-    emit sendAddCardData(sl);
+    if(setEdit) {
+        setEdit = false;
+        emit sendEditCardData(sl);
+    } else {
+        emit sendAddCardData(sl);
+    }
     close();
     clearLineEdits();
 }
