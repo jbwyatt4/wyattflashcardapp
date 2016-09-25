@@ -145,13 +145,8 @@ void MainWindow::gotoEditDeckWindow(DeckItem *item) {
 
 void MainWindow::on_runDeckButton_clicked()
 {
-
-    //deckview dv;
-    //dv.setModal(true);
-    //dv.exec();
-    //or to use heap memory
-    //deckview *dv = new deckview(this);
-    //dv->show();
+    cardViewer.setModal(true);
+    cardViewer.exec();
 
 }
 
@@ -224,14 +219,4 @@ void MainWindow::on_renameDeckButton_clicked()
     } else {
     //not sure how to handle not ok
     }
-}
-
-void MainWindow::on_deckListWidget_itemSelectionChanged()
-{
-
-}
-
-void MainWindow::on_deckListWidget_itemChanged(QListWidgetItem *item)
-{
-
 }

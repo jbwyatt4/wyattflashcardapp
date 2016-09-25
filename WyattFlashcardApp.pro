@@ -18,19 +18,22 @@ SOURCES += main.cpp\
     deckitem.cpp \
     carditem.cpp \
     editdeckwindow.cpp \
-    addcarddialog.cpp
+    addcarddialog.cpp \
+    cardviewer.cpp
 
 HEADERS  += mainwindow.h \
     aboutdialog.h \
     deckitem.h \
     carditem.h \
     editdeckwindow.h \
-    addcarddialog.h
+    addcarddialog.h \
+    cardviewer.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \
     editdeckwindow.ui \
-    addcarddialog.ui
+    addcarddialog.ui \
+    cardviewer.ui
 
 OTHER_FILES += \
     Notes.txt

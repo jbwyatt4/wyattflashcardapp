@@ -16,6 +16,7 @@
 #include "addcarddialog.h"
 #include "editdeckwindow.h"
 #include "deckitem.h"
+#include "cardviewer.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,6 +34,7 @@ public:
     DeckItem * itemSelected;
 
     EditDeckWindow edw;
+    CardViewer cardViewer;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -75,10 +77,6 @@ private slots:
     void on_actionSave_triggered();
 
     void on_renameDeckButton_clicked();
-
-    void on_deckListWidget_itemSelectionChanged();
-
-    void on_deckListWidget_itemChanged(QListWidgetItem *item);
 
 signals:
     void get_itemselected(DeckItem *);
