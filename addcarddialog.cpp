@@ -18,6 +18,7 @@ AddCardDialog::~AddCardDialog()
 void AddCardDialog::receiveCardData(QStringList sl){
     ui->cardFront->setText(sl[0]);
     ui->cardBack->setText(sl[1]);
+    setEdit = true;
 }
 
 void AddCardDialog::on_buttonBox_accepted()

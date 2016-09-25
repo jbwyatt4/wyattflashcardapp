@@ -19,9 +19,9 @@ EditDeckWindow::EditDeckWindow(QWidget *parent) :
 
 EditDeckWindow::~EditDeckWindow()
 {
-    /*disconnect(&addCardDialog, SIGNAL(sendAddCardData(QStringList)), this, SLOT(receiveAddCardData(QStringList)));
+    disconnect(&addCardDialog, SIGNAL(sendAddCardData(QStringList)), this, SLOT(receiveAddCardData(QStringList)));
     disconnect(&addCardDialog, SIGNAL(sendEditCardData(QStringList)), this, SLOT(receiveEditCardData(QStringList)));
-    disconnect(this, SIGNAL(sendEditCardDataToEdit(QStringList)), &addCardDialog, SLOT(receiveCardData(QStringList)));*/
+    disconnect(this, SIGNAL(sendEditCardDataToEdit(QStringList)), &addCardDialog, SLOT(receiveCardData(QStringList)));
 
     delete ui;
 }
@@ -83,7 +83,7 @@ void EditDeckWindow::receiveEditCardData(QStringList sl) {
     this->itemSelected->setText(sl[0]);
 
     // have to remove and readd element? I think you should seek help on irc for this one
-    //ui->cardListWidget->addItem(this->itemSelected);
+    ui->cardListWidget->addItem(this->itemSelected);
     checkButtons();
     ui->cardListWidget->setCurrentItem(this->itemSelected);
 }
