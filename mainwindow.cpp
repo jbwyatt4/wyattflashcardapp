@@ -26,6 +26,7 @@ this->setGeometry(
 
   // edw is not a poniter, so use reference
   connect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
+  connect(this, SIGNAL(runCardViewer(CardItem *)), &cardViewer, SLOT(receiveData(QVector<CardItem *> )));
 
 }
 
@@ -145,6 +146,7 @@ void MainWindow::gotoEditDeckWindow(DeckItem *item) {
 
 void MainWindow::on_runDeckButton_clicked()
 {
+    emit(runCardViewer(itemSelected));
     cardViewer.setModal(true);
     cardViewer.exec();
 

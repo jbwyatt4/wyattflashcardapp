@@ -80,6 +80,7 @@ private slots:
 
 signals:
     void get_itemselected(DeckItem *);
+    void runCardViewer(DeckItem *);
 
 private:
     Ui::MainWindow *ui;
