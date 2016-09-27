@@ -27,7 +27,7 @@ public:
 private slots:
     void on_leaveButton_clicked();
 
-    void receiveData(QVector<DeckItem *> l);
+    void receiveData(DeckItem *l);
 
 private:
     Ui::CardViewer *ui;

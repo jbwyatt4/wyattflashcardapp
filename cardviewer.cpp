@@ -19,8 +19,8 @@ void CardViewer::on_leaveButton_clicked()
     this->close();
 }
 
-void CardViewer::receiveData(QVector<DeckItem *> l) {
-    QVectorIterator<CardItem *> i(l.cardList);
+void CardViewer::receiveData(DeckItem * l) {
+    QVectorIterator<CardItem *> i(l->cardList);
     while(i.hasNext()) {
         cardList.append( i.next() );
     }

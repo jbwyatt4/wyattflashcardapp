@@ -26,13 +26,15 @@ this->setGeometry(
 
   // edw is not a poniter, so use reference
   connect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
-  connect(this, SIGNAL(runCardViewer(CardItem *)), &cardViewer, SLOT(receiveData(QVector<CardItem *> )));
+  connect(this, SIGNAL(runCardViewer(DeckItem *)), &cardViewer, SLOT(receiveData(DeckItem *)));
 
 }
 
 MainWindow::~MainWindow()
 {
   disconnect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
+  disconnect(this, SIGNAL(runCardViewer(DeckItem *)), &cardViewer, SLOT(receiveData(DeckItem *)));
+
   delete ui;
 }
 
