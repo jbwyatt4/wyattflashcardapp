@@ -93,7 +93,7 @@
     <string>Shuffle Back</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="cards_left">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -106,10 +106,10 @@
     <string>Cards Left:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="cards_left_indicator">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>90</x>
      <y>120</y>
      <width>31</width>
      <height>17</height>

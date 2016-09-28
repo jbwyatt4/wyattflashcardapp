@@ -20,19 +20,31 @@ class CardViewer : public QDialog
 public:
     explicit CardViewer(QWidget *parent = 0);
     ~CardViewer();
-    void clearVector();
-    CardItem * pickRandom();
+    void clearData();
+    int pickRandom();
     void flipCard();
+    void setCurrentCard(CardItem * ci);
+    void updateMyDisplayButtons();
+    bool hasCards();
+    void flipActiveButtons(bool);
+    CardItem * getCurrentCard(int i);
+    void setCardText();
+    void reject();
 
 private slots:
     void on_leaveButton_clicked();
 
     void receiveData(DeckItem *l);
 
+    void on_nextButton_clicked();
+
 private:
     Ui::CardViewer *ui;
     bool isFrontShowing;
-    QVector<CardItem *> cardList;
+    QListWidget cardList;
+    CardItem * cardItem = NULL;
+    int cardNumber;
+    bool buttonStatus;
 };
 
 #endif // CARDVIEWER_H
