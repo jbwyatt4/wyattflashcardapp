@@ -34,15 +34,15 @@ void CardViewer::receiveData(DeckItem * l) {
     } else {
         int i = pickRandom();
         cardNumber = i;
-        //cardItem = getCurrentCard(i);
-        //setCurrentCard(cardItem);
+        cardItem = getCurrentCard(i);
+        setCurrentCard(cardItem);
     }
 }
 
 CardItem * CardViewer::getCurrentCard(int i) {
-    CardItem * ci = NULL;
-    //ci = cardList.takeItem(i);
-    return NULL; //ci;
+    QListWidgetItem * ci = NULL;
+    ci = cardList.takeItem(i);
+    return dynamic_cast<CardItem*>(ci);
 }
 
 void CardViewer::clearData() {
@@ -69,11 +69,7 @@ int CardViewer::pickRandom() {
  */
 void CardViewer::setCurrentCard(CardItem * ci) {
     QString s;
-    if(ci == NULL) {
-        s = QString("NAN2");
-    } else {
-        s = ci->get_card_front();
-    }
+    s = ci->get_card_front();
     setCardText();
     cardItem = ci;
 }
