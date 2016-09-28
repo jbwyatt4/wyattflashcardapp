@@ -47,7 +47,6 @@ void EditDeckWindow::on_pushButton_clicked()
 {
     close();
     clearData();
-    QString("temp");
 }
 
 void EditDeckWindow::receiveData(DeckItem *q) { // from MainWindow

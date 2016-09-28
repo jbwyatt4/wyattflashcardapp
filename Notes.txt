@@ -16,6 +16,9 @@ Replace custom dialog with a QAbout dialog??
 randomize copied list
 guarantee no unique names
 
+Add?
+Add spanish characters-most people would use a character map
+
 -Misc Design Notes
 --Use /.local directory to store data.
 handles mutiple users, AND mutiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)

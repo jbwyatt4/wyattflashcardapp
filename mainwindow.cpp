@@ -165,7 +165,7 @@ void MainWindow::on_addDeckButton_clicked()
       // handle no input
       if(text.isEmpty()) {
           QMessageBox msgBox;
-          msgBox.setText("Please put in a name.");
+          msgBox.setText(tr("Please put in a name."));
           msgBox.exec();
       } else {
         addDeck(text);
@@ -215,7 +215,7 @@ void MainWindow::on_renameDeckButton_clicked()
       // handle no input
       if(text.isEmpty()) {
           QMessageBox msgBox;
-          msgBox.setText("Please put in a name.");
+          msgBox.setText(tr("Please put in a name."));
           msgBox.exec();
       } else {
         this->itemSelected->setText(text);
