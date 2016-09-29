@@ -44,7 +44,9 @@ CardItem * CardViewer::getCurrentCard(int i) {
 }
 
 void CardViewer::clearData() {
-
+    while(cardList.count() > 0) {
+        cardList.takeItem(0);
+    }
 }
 
 // instead of shuffling, just pick at random
