@@ -29,7 +29,8 @@ void CardViewer::receiveData(DeckItem * l) {
     // 0 case
     if (cardList.count() < 1) {
         ui->ViewerDisplay->setText(tr("No cards"));
-        ui->cards_left_indicator->setText("0");
+        updateMyDisplay();
+        flipActiveButtons(false);
     // n > 1 case
     } else {
         nextCard();
@@ -93,19 +94,22 @@ void CardViewer::on_nextButton_clicked()
     }
 }
 
+void CardViewer::updateButtons() {
+    if(!hasCards() || cardItem == NULL) {
+        flipActiveButtons(false);
+    }
+    if(hasCards()) {
+        flipActiveButtons(true);
+    }
+}
+
 /**
  * @brief CardViewer::updateMyDisplayButtons
  *
  * Updates both the display and buttons
  */
-void CardViewer::updateMyDisplayButtons() {
-    /*if(!hasCards() || cardItem == NULL) {
-        flipActiveButtons(false);
-    }
-    if(hasCards()) {
-        flipActiveButtons(true);
-    }*/
-    ui->cards_left_indicator->setText(QString(cardList.count()));
+void CardViewer::updateMyDisplay() {
+    ui->cards_left_indicator->setText(QString::number(cardList.count()));
 }
 
 bool CardViewer::hasCards() {
@@ -159,5 +163,5 @@ void CardViewer::nextCard() {
     cardItem = getCurrentCard(i);
     isFrontShowing = true;
     setCurrentCard(cardItem);
-    updateMyDisplayButtons();
+    updateMyDisplay();
 }

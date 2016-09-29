@@ -6,6 +6,8 @@
 #include <QVectorIterator>
 #include <QMessageBox>
 #include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "carditem.h"
 #include "deckitem.h"
@@ -25,13 +27,14 @@ public:
     int pickRandom();
     void flipCard();
     void setCurrentCard(CardItem * ci);
-    void updateMyDisplayButtons();
+    void updateMyDisplay();
     bool hasCards();
     void flipActiveButtons(bool);
     CardItem * getCurrentCard(int i);
     void setCardText();
     void reject();
     void nextCard();
+    void updateButtons();
 
 private slots:
     void on_leaveButton_clicked();
