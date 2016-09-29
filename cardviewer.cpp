@@ -32,10 +32,7 @@ void CardViewer::receiveData(DeckItem * l) {
         ui->cards_left_indicator->setText("0");
     // n > 1 case
     } else {
-        int i = pickRandom();
-        cardNumber = i;
-        cardItem = getCurrentCard(i);
-        setCurrentCard(cardItem);
+        nextCard();
     }
 }
 
@@ -86,14 +83,13 @@ void CardViewer::on_nextButton_clicked()
 {
     if(cardList.count() < 1) {
         // print "No More Cards" message
-
+        QMessageBox msgBox;
+        msgBox.setText(tr("No more cards."));
+        msgBox.exec();
         // exit
+        this->close();
     } else {
-        int i = pickRandom();
-        cardNumber = i;
-        cardItem = getCurrentCard(i);
-        isFrontShowing = true;
-        setCurrentCard(cardItem);
+        nextCard();
     }
 }
 
@@ -103,12 +99,12 @@ void CardViewer::on_nextButton_clicked()
  * Updates both the display and buttons
  */
 void CardViewer::updateMyDisplayButtons() {
-    if(!hasCards() || cardItem == NULL) {
+    /*if(!hasCards() || cardItem == NULL) {
         flipActiveButtons(false);
     }
     if(hasCards()) {
         flipActiveButtons(true);
-    }
+    }*/
     ui->cards_left_indicator->setText(QString(cardList.count()));
 }
 
@@ -143,4 +139,25 @@ void CardViewer::reject()
 {
     //clearData();
     QDialog::reject();
+}
+
+void CardViewer::on_flipButton_clicked()
+{
+    isFrontShowing = !isFrontShowing;
+    setCardText();
+}
+
+void CardViewer::on_shuffleButton_clicked()
+{
+    cardList.addItem( this->cardItem );
+    nextCard();
+}
+
+void CardViewer::nextCard() {
+    int i = pickRandom();
+    cardNumber = i;
+    cardItem = getCurrentCard(i);
+    isFrontShowing = true;
+    setCurrentCard(cardItem);
+    updateMyDisplayButtons();
 }

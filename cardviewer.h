@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QVector>
 #include <QVectorIterator>
+#include <QMessageBox>
 #include <time.h>
 
 #include "carditem.h"
@@ -30,6 +31,7 @@ public:
     CardItem * getCurrentCard(int i);
     void setCardText();
     void reject();
+    void nextCard();
 
 private slots:
     void on_leaveButton_clicked();
@@ -37,6 +39,10 @@ private slots:
     void receiveData(DeckItem *l);
 
     void on_nextButton_clicked();
+
+    void on_flipButton_clicked();
+
+    void on_shuffleButton_clicked();
 
 private:
     Ui::CardViewer *ui;
