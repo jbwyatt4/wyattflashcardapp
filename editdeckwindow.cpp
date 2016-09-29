@@ -141,7 +141,7 @@ void EditDeckWindow::clearData() {
     // do not use, deletes all data in the reference
     //this->ui->cardListWidget->clear();
 
-    for(; this->ui->cardListWidget->count() > 0 ;) {
+    while(this->ui->cardListWidget->count() > 0) {
         this->ui->cardListWidget->takeItem(0);
     }
 }

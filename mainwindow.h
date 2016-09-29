@@ -11,6 +11,9 @@
 #include <QString>
 #include <QVector>
 #include <QMessageBox>
+#include <QDir>
+#include <QtGlobal>
+#include <QStandardPaths>
 
 #include "aboutdialog.h"
 #include "addcarddialog.h"
@@ -54,6 +57,10 @@ public:
     void deselect_item();
 
     void gotoEditDeckWindow(DeckItem *item);
+
+    void saveDecks();
+    bool checkFolder(QString path);
+    QString dataLocation();
 
 private slots:
     void on_actionAbout_triggered();

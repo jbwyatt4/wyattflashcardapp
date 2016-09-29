@@ -35,6 +35,10 @@ MainWindow::~MainWindow()
   disconnect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
   disconnect(this, SIGNAL(runCardViewer(DeckItem *)), &cardViewer, SLOT(receiveData(DeckItem *)));
 
+  // Review, destructor is called on exiting program, confirmed with both Xbox and File->Quit
+  // no need to list this function mutiple times
+  saveDecks();
+
   delete ui;
 }
 
@@ -223,4 +227,45 @@ void MainWindow::on_renameDeckButton_clicked()
     } else {
     //not sure how to handle not ok
     }
+}
+
+/**
+ * @brief MainWindow::checkFolder
+ * @param path
+ *
+ * Checks and adds a folder if not there. OS dependent. true is success
+ */
+bool MainWindow::checkFolder(QString path) {
+    QDir dir(path);
+    if (!dir.exists()) {
+        // returns true on success
+        return dir.mkpath(".");
+    }
+    return true;
+}
+
+void MainWindow::saveDecks() {
+    //QMessageBox msgBox;
+    //msgBox.setText(tr( QStandardPaths.displayName(QStandardPaths.standardLocations(9) ));
+    //msgBox.exec();
+    bool result = false;
+    result = checkFolder(dataLocation());
+    result = checkFolder(dataLocation() + "/decks");
+
+    if (!result) {
+        QMessageBox msgBox;
+        msgBox.setText(tr("ERROR: Unable to save to file or directory, decks not saved! Please check your write permissions."));
+        msgBox.exec();
+
+    }
+}
+
+QString MainWindow::dataLocation() {
+    #ifdef Q_OS_LINUX
+    return QString(QDir::homePath() + "/.local/share/WyattTechCourses/WyattSimpleFlashcardApp");
+    #endif
+    #ifdef Q_OS_WIN
+    return QString(QDir::homePath() + "/AppData/WyattTechCourses/WyattSimpleFlashcardApp");
+    #endif
+
 }

@@ -16,6 +16,7 @@ CardViewer::~CardViewer()
 
 void CardViewer::on_leaveButton_clicked()
 {
+    clearData(); // the same pointer can not be in two qlistwidgetitems, all data must be cleared
     this->close();
 }
 
@@ -68,8 +69,6 @@ int CardViewer::pickRandom() {
  * Assumes ci exists
  */
 void CardViewer::setCurrentCard(CardItem * ci) {
-    QString s;
-    s = ci->get_card_front();
     setCardText();
     cardItem = ci;
 }
@@ -143,7 +142,7 @@ void CardViewer::setCardText() {
 
 void CardViewer::reject()
 {
-    //clearData();
+    clearData();
     QDialog::reject();
 }
 
@@ -160,9 +159,8 @@ void CardViewer::on_shuffleButton_clicked()
 }
 
 void CardViewer::nextCard() {
-    int i = pickRandom();
-    cardNumber = i;
-    cardItem = getCurrentCard(i);
+    cardNumber = pickRandom();
+    cardItem = getCurrentCard(cardNumber);
     isFrontShowing = true;
     setCurrentCard(cardItem);
     updateMyDisplay();
