@@ -265,7 +265,7 @@ QString MainWindow::dataLocation() {
     return QString(QDir::homePath() + "/.local/share/WyattTechCourses/WyattSimpleFlashcardApp");
     #endif
     #ifdef Q_OS_WIN
-    return QString(QDir::homePath() + "/AppData/WyattTechCourses/WyattSimpleFlashcardApp");
+    return QString(QDir::homePath() + "/AppData/Local/WyattTechCourses/WyattSimpleFlashcardApp");
     #endif
 
 }
