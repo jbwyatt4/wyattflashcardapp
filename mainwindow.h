@@ -67,6 +67,7 @@ public:
     void saveDecks();
     bool checkFolder(QString path);
     QString dataLocation();
+    void checkForDuplicateDeck(QString text);
 
 private slots:
     void on_actionAbout_triggered();

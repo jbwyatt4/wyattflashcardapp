@@ -141,6 +141,10 @@ void MainWindow::deselect_item()
     checkButtons();
 }
 
+bool MainWindow::checkForDuplicateDeck(QString text) {
+    return false;
+}
+
 void MainWindow::gotoEditDeckWindow(DeckItem *item) {
 
     emit(get_itemselected(item));
@@ -165,11 +169,16 @@ void MainWindow::on_addDeckButton_clicked()
     QString text = QInputDialog::getText(this, tr("Type Name"),
                      tr("New Flash Card Deck Name:"), QLineEdit::Normal,
                      NULL, &ok);
+    text = text.trimmed();
     if(ok) {
       // handle no input
       if(text.isEmpty()) {
           QMessageBox msgBox;
           msgBox.setText(tr("Please put in a name."));
+          msgBox.exec();
+      } else if(checkForDuplicateDeck(text)) {
+          QMessageBox msgBox;
+          msgBox.setText(tr("Duplicate Deck already exists: " + text));
           msgBox.exec();
       } else {
         addDeck(text);
