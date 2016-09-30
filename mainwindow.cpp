@@ -249,15 +249,40 @@ void MainWindow::saveDecks() {
     //msgBox.setText(tr( QStandardPaths.displayName(QStandardPaths.standardLocations(9) ));
     //msgBox.exec();
     bool result = false;
-    result = checkFolder(dataLocation());
+    //result = checkFolder(dataLocation());
     result = checkFolder(dataLocation() + "/decks");
 
     if (!result) {
         QMessageBox msgBox;
-        msgBox.setText(tr("ERROR: Unable to save to file or directory, decks not saved! Please check your write permissions."));
+        QString t(tr("ERROR: Unable to save to file or directory, decks not saved! Please check your write permissions."));
+        qDebug() << t;
+        msgBox.setText(t);
         msgBox.exec();
-
+        return;
     }
+    for(int i=0; i < deckCardList.count(); i++) {
+        QString t(itemSelected->get_name());
+        QFile file(dataLocation() + "/decks/" + t);//itemSelected->get_name());
+        // Trying to open in WriteOnly and Text mode
+        if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
+            qDebug() << " Could not open file for writing";
+            return;
+        }
+        QTextStream out(&file);
+        out << itemSelected->get_name() << '\n' << itemSelected->cardList.count();
+        file.flush();
+        file.close();
+    }
+    /*QFile file(dataLocation() + "a.test");//itemSelected->get_name());
+    // Trying to open in WriteOnly and Text mode
+    if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
+        qDebug() << " Could not open file for writing";
+        return;
+    }
+    QTextStream out(&file);
+    out << "QFile Tutorial overwrite";
+    file.flush();
+    file.close();*/
 }
 
 QString MainWindow::dataLocation() {

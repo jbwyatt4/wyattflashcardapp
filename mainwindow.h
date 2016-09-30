@@ -14,6 +14,12 @@
 #include <QDir>
 #include <QtGlobal>
 #include <QStandardPaths>
+#include <QJsonObject>
+#include <QFile>
+#include <QJsonDocument>
+#include <QDebug>
+#include <QTextStream>
+#include <QIODevice>
 
 #include "aboutdialog.h"
 #include "addcarddialog.h"
