@@ -28,6 +28,8 @@
 #include "cardviewer.h"
 #include "misc.h"
 
+#define JW_DEBUG
+
 namespace Ui {
 class MainWindow;
 }

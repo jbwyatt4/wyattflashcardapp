@@ -58,6 +58,7 @@ void EditDeckWindow::receiveData(DeckItem *q) { // from MainWindow
     while(i.hasNext()) {
         this->ui->cardListWidget->addItem(i.next());
     }
+    //ui->cardListWidget->setCurrentItem(this->currentDeck->cardList[0]);//didnt work
     // because buttons are grayed out when none is selected do not have to select list item widget
 }
 
@@ -163,4 +164,11 @@ void EditDeckWindow::reject()
     if (resBtn == QMessageBox::Yes) {
         QDialog::reject();
     }*/
+}
+
+void EditDeckWindow::on_cardListWidget_itemClicked(QListWidgetItem *item)
+{
+    CardItem *a = dynamic_cast<CardItem*>(item);
+    this->itemSelected = a;
+    checkButtons();
 }

@@ -288,7 +288,7 @@ void MainWindow::saveDecks() {
         return;
     }
     for(int i=0; i < deckCardList.count(); i++) {
-        QString t(itemSelected->get_name());
+        QString t(deckCardList[i]->get_name());
         QFile file(dataLocation() + "/decks/" + t);
         // Trying to open in WriteOnly and Text mode
         if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
@@ -296,11 +296,16 @@ void MainWindow::saveDecks() {
             return;
         }
         QTextStream out(&file);
-        out << "WyattSimpleFlashcardApp-1.0" << '\n' << itemSelected->get_name() << '\n' << itemSelected->cardList.count();
-        for(int j=0; j < itemSelected->cardList.count(); j++) {
-            out << '\n';
-            out << itemSelected->cardList[j]->get_card_front() << '\n';
-            out << itemSelected->cardList[j]->get_card_back() << '\n';
+        out << "WyattSimpleFlashcardApp-1.0" << '\n' << deckCardList[i]->get_name() << '\n' << deckCardList[i]->cardList.count() << '\n';
+        #ifdef JW_DEBUG
+        qDebug() << "Save Deck with name and count: " << deckCardList[i]->get_name() << deckCardList[i]->cardList.count();
+        #endif
+        for(int j=0; j < deckCardList[i]->cardList.count(); j++) {
+            out << deckCardList[i]->cardList[j]->get_card_front() << '\n';
+            out << deckCardList[i]->cardList[j]->get_card_back() << '\n';
+            #ifdef JW_DEBUG
+            qDebug() << "Save Card with name: " << deckCardList[i]->cardList[j]->get_card_front() << deckCardList[i]->cardList[j]->get_card_back();
+            #endif
         }
         file.flush();
         file.close();
@@ -324,11 +329,16 @@ void MainWindow::loadDecks() {
         QTextStream in(&file);
         in.readLine(); // dump header, may use in the future
         DeckItem * d = addDeck(in.readLine());
+        #ifdef JW_DEBUG
+        qDebug() << "Load Deck with name: " << d->get_name();
+        #endif
         int amtOfCards = in.readLine().toInt();
         for(int j=0; j < amtOfCards; j++) {
             QString t1 = in.readLine();
             QString t2 = in.readLine();
-            qDebug() << t1 << t2;
+            #ifdef JW_DEBUG
+            qDebug() << "Card Load" << t1 << t2;
+            #endif
             CardItem * card = new CardItem(t1, t2);
             d->cardList.append(card);
         }

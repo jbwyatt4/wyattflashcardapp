@@ -55,6 +55,8 @@ private slots:
 
     void on_editCardButton_clicked();
 
+    void on_cardListWidget_itemClicked(QListWidgetItem *item);
+
 signals:
     void sendEditCardDataToEdit(QStringList);
 
