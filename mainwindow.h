@@ -49,7 +49,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void addDeck(QString title);
+    DeckItem *addDeck(QString title);
     void removeDeck(DeckItem *item);
 
     bool has_decks();

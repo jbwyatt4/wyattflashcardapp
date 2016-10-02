@@ -86,13 +86,14 @@ void MainWindow::checkButtons() {
     }
 }
 
-void MainWindow::addDeck(QString title)
+DeckItem *MainWindow::addDeck(QString title)
 {
     DeckItem * deck = new DeckItem(title);
     ui->deckListWidget->addItem(deck);
     this->deckCardList.append(deck);
     ui->deckListWidget->setCurrentItem(deck);
     select_item(deck);
+    return deck;
 }
 
 void MainWindow::removeDeck(DeckItem *item)
@@ -296,7 +297,11 @@ void MainWindow::saveDecks() {
         }
         QTextStream out(&file);
         out << "WyattSimpleFlashcardApp-1.0" << '\n' << itemSelected->get_name() << '\n' << itemSelected->cardList.count();
-
+        for(int j=0; j < itemSelected->cardList.count(); j++) {
+            out << '\n';
+            out << itemSelected->cardList[j]->get_card_front() << '\n';
+            out << itemSelected->cardList[j]->get_card_back() << '\n';
+        }
         file.flush();
         file.close();
     }
@@ -304,7 +309,7 @@ void MainWindow::saveDecks() {
 
 void MainWindow::loadDecks() {
     // NULL case, check for no folder, also creates it b/c why not?
-    bool result = checkFolder(dataLocation() + "/decks");
+    checkFolder(dataLocation() + "/decks");
 
     QDir dir(dataLocation() + "/decks");
     QStringList allFiles = dir.entryList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst);
@@ -318,23 +323,18 @@ void MainWindow::loadDecks() {
 
         QTextStream in(&file);
         in.readLine(); // dump header, may use in the future
-        //qDebug() << "A" << allFiles.count() << in.readLine();
-
-        addDeck(in.readLine());
+        DeckItem * d = addDeck(in.readLine());
+        int amtOfCards = in.readLine().toInt();
+        for(int j=0; j < amtOfCards; j++) {
+            QString t1 = in.readLine();
+            QString t2 = in.readLine();
+            qDebug() << t1 << t2;
+            CardItem * card = new CardItem(t1, t2);
+            d->cardList.append(card);
+        }
     }
-
-
-
-
-    /*QFile file("in.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
-
-    QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        process_line(line);
-    }*/
+    // need to check buttons
+    edw.checkButtons();
 }
 
 QString MainWindow::dataLocation() {
