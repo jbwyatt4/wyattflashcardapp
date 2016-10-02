@@ -33,9 +33,8 @@ QString DeckItem::get_name()
  * Deletes all cards by calling delete on them
  */
 void DeckItem::removeAllCards() {
-    /*QVector<CardItem>::iterator it = this->cardList.end();
-    QVector<CardItem>::iterator end = this->cardList.begin();
-    while(it != end) {
-       //delete cardList.at(*it);
-    }*/
+    QVectorIterator<CardItem *> i(this->cardList);
+    while(!cardList.isEmpty()) {
+        cardList.removeFirst();
+    }
 }

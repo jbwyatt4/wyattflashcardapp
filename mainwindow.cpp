@@ -111,6 +111,7 @@ void MainWindow::removeDeck(DeckItem *item)
     // then have qt pop off the object from the list, we already have the reference so we don't ahve to catch it
     this->ui->deckListWidget->takeItem(this->ui->deckListWidget->currentRow());
     // now delete
+    item->removeAllCards();
     delete item;
     this->itemSelected = NULL;
 }
@@ -249,7 +250,16 @@ void MainWindow::on_renameDeckButton_clicked()
           msgBox.setText(tr("Please put in a name."));
           msgBox.exec();
       } else {
+        QString t(itemSelected->get_name());
+        QFile file(dataLocation() + "/decks/" + t);
         this->itemSelected->setTitleText(text);
+
+        if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
+          qDebug() << " Could not open file for writing";
+          return;
+        } else {
+            file.rename(text);
+        }
       }
     } else {
     //not sure how to handle not ok
@@ -304,7 +314,7 @@ void MainWindow::saveDecks() {
             out << deckCardList[i]->cardList[j]->get_card_front() << '\n';
             out << deckCardList[i]->cardList[j]->get_card_back() << '\n';
             #ifdef JW_DEBUG
-            qDebug() << "Save Card with name: " << deckCardList[i]->cardList[j]->get_card_front() << deckCardList[i]->cardList[j]->get_card_back();
+            qDebug() << "Save Card: " << deckCardList[i]->cardList[j]->get_card_front() << deckCardList[i]->cardList[j]->get_card_back();
             #endif
         }
         file.flush();
