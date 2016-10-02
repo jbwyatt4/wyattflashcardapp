@@ -28,6 +28,8 @@ this->setGeometry(
   connect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
   connect(this, SIGNAL(runCardViewer(DeckItem *)), &cardViewer, SLOT(receiveData(DeckItem *)));
 
+  loadDecks();
+
 }
 
 MainWindow::~MainWindow()
@@ -141,7 +143,22 @@ void MainWindow::deselect_item()
     checkButtons();
 }
 
+/**
+ * @brief MainWindow::checkForDuplicateDeck
+ * @param text
+ * @return
+ *
+ * Checks if there is a deck with the same name.
+ *
+ * All text is trimmed and reduced to lower case.
+ */
 bool MainWindow::checkForDuplicateDeck(QString text) {
+    //text = Misc.trimAndLower(text);
+    for(int i=0; i < deckCardList.count(); i++) {
+        if (deckCardList[i]->get_name() == text) {
+            return true;
+        }
+    }
     return false;
 }
 
@@ -178,7 +195,7 @@ void MainWindow::on_addDeckButton_clicked()
           msgBox.exec();
       } else if(checkForDuplicateDeck(text)) {
           QMessageBox msgBox;
-          msgBox.setText(tr("Duplicate Deck already exists: " + text));
+          msgBox.setText(tr("Duplicate Deck already exists: ") + text);
           msgBox.exec();
       } else {
         addDeck(text);
@@ -271,27 +288,53 @@ void MainWindow::saveDecks() {
     }
     for(int i=0; i < deckCardList.count(); i++) {
         QString t(itemSelected->get_name());
-        QFile file(dataLocation() + "/decks/" + t);//itemSelected->get_name());
+        QFile file(dataLocation() + "/decks/" + t);
         // Trying to open in WriteOnly and Text mode
         if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
             qDebug() << " Could not open file for writing";
             return;
         }
         QTextStream out(&file);
-        out << itemSelected->get_name() << '\n' << itemSelected->cardList.count();
+        out << "WyattSimpleFlashcardApp-1.0" << '\n' << itemSelected->get_name() << '\n' << itemSelected->cardList.count();
+
         file.flush();
         file.close();
     }
-    /*QFile file(dataLocation() + "a.test");//itemSelected->get_name());
-    // Trying to open in WriteOnly and Text mode
-    if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
-        qDebug() << " Could not open file for writing";
-        return;
+}
+
+void MainWindow::loadDecks() {
+    // NULL case, check for no folder, also creates it b/c why not?
+    bool result = checkFolder(dataLocation() + "/decks");
+
+    QDir dir(dataLocation() + "/decks");
+    QStringList allFiles = dir.entryList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst);
+
+    for(int i = 0; i < allFiles.count(); i++) {
+
+        QFile file(dataLocation() + "/decks" + "/" +allFiles[i]);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            return;
+        }
+
+        QTextStream in(&file);
+        in.readLine(); // dump header, may use in the future
+        //qDebug() << "A" << allFiles.count() << in.readLine();
+
+        addDeck(in.readLine());
     }
-    QTextStream out(&file);
-    out << "QFile Tutorial overwrite";
-    file.flush();
-    file.close();*/
+
+
+
+
+    /*QFile file("in.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        process_line(line);
+    }*/
 }
 
 QString MainWindow::dataLocation() {

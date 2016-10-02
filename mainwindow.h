@@ -26,6 +26,7 @@
 #include "editdeckwindow.h"
 #include "deckitem.h"
 #include "cardviewer.h"
+#include "misc.h"
 
 namespace Ui {
 class MainWindow;
@@ -65,9 +66,11 @@ public:
     void gotoEditDeckWindow(DeckItem *item);
 
     void saveDecks();
+    void loadDecks();
     bool checkFolder(QString path);
     QString dataLocation();
-    void checkForDuplicateDeck(QString text);
+    bool checkForDuplicateDeck(QString text);
+
 
 private slots:
     void on_actionAbout_triggered();

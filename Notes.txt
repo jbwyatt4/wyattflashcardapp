@@ -13,8 +13,9 @@ qlistwidgetitem and pass them to the qlistwidget.
 Replace custom dialog with a QAbout dialog??
 
 -Implement
-randomize copied list
+Xrandomize copied list
 guarantee no unique names
+delete file when you delete deck
 
 Add?
 Add spanish characters-most people would use a character map

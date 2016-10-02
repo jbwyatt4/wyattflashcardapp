@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     carditem.cpp \
     editdeckwindow.cpp \
     addcarddialog.cpp \
-    cardviewer.cpp
+    cardviewer.cpp \
+    misc.cpp
 
 HEADERS  += mainwindow.h \
     aboutdialog.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     carditem.h \
     editdeckwindow.h \
     addcarddialog.h \
-    cardviewer.h
+    cardviewer.h \
+    misc.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \
