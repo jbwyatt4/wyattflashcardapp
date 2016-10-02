@@ -1,3 +1,8 @@
+-Release gotchas
+Change the youtube link to your own!
+Disable debugging define
+Build as release
+
 -Design Questions
 Approach 1 is to store all decka nd card data in a qlistwidgetitem
 Approach 2 is to extern a list and use an adapter
@@ -14,7 +19,8 @@ Replace custom dialog with a QAbout dialog??
 
 -Implement
 Xrandomize copied list
-guarantee no unique names
+Xguarantee no unique names (in deck)
+fix renaming not saving bug for decks
 delete file when you delete deck
 
 Add?

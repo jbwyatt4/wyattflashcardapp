@@ -15,6 +15,7 @@ public:
     explicit DeckItem(QString name);
     ~DeckItem();
     QString get_name();
+    void setTitleText(QString );
 
     QVector<CardItem *> cardList;  // dynamic array that holds all the cards in a deck
 

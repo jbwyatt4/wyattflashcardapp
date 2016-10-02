@@ -60,6 +60,9 @@
      <height>27</height>
     </rect>
    </property>
+   <property name="toolTip">
+    <string>See the other side of the card</string>
+   </property>
    <property name="text">
     <string>Flip</string>
    </property>
@@ -72,6 +75,9 @@
      <width>99</width>
      <height>27</height>
     </rect>
+   </property>
+   <property name="toolTip">
+    <string>Next Card (current card will be tossed)</string>
    </property>
    <property name="text">
     <string>Next</string>
@@ -88,6 +94,9 @@
    </property>
    <property name="toolTip">
     <string>Shuffles card back into deck so you can retest yourself</string>
+   </property>
+   <property name="toolTipDuration">
+    <number>-1</number>
    </property>
    <property name="text">
     <string>Shuffle Back</string>

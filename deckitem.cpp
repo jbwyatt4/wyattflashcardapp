@@ -7,6 +7,7 @@ DeckItem::DeckItem()
 
 DeckItem::DeckItem(QString name)
 {
+    // please do not try setTitleText in the constructor.
     this->name = name;
     QListWidgetItem(name.toStdString().data()); //complains about a shadow parameter without converting to char array, means it's using a different constructor, give a c char array
     this->setText(name);
@@ -15,6 +16,11 @@ DeckItem::DeckItem(QString name)
 
 DeckItem::~DeckItem() {
     removeAllCards();
+}
+
+void DeckItem::setTitleText(QString name) {
+    this->name = name;
+    this->setText(name);
 }
 
 QString DeckItem::get_name()

@@ -249,7 +249,7 @@ void MainWindow::on_renameDeckButton_clicked()
           msgBox.setText(tr("Please put in a name."));
           msgBox.exec();
       } else {
-        this->itemSelected->setText(text);
+        this->itemSelected->setTitleText(text);
       }
     } else {
     //not sure how to handle not ok
