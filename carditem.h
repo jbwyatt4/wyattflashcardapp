@@ -5,6 +5,8 @@
 #include <QVector>
 #include <QListWidgetItem>
 
+#include "misc.h"
+
 class CardItem : public QListWidgetItem
 {
 public:

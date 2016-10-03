@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QVectorIterator>
 
+#include "misc.h"
 #include "addcarddialog.h"
 #include "deckitem.h"
 #include "carditem.h"

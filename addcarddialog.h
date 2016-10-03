@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "misc.h"
+
 namespace Ui {
 class AddCardDialog;
 }

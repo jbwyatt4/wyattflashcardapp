@@ -39,3 +39,6 @@ FORMS    += mainwindow.ui \
 
 OTHER_FILES += \
     Notes.txt
+
+RESOURCES += \
+    resource.qrc

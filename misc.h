@@ -3,6 +3,8 @@
 
 #include <QString>
 
+#define JW_DEBUG
+
 class Misc
 {
 public:

@@ -7,6 +7,7 @@
 #include <QListWidgetItem>
 #include <QDebug>
 
+#include "misc.h"
 #include "carditem.h"
 
 class DeckItem : public QListWidgetItem

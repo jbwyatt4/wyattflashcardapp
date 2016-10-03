@@ -8,15 +8,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-// warning, goes to left monitor on two monitor setup
-this->setGeometry(
+    #ifdef Q_OS_WIN
+  setWindowIcon(QIcon(":icon.ico"));
+#endif
+  // warning, goes to left monitor on two monitor setup
+  this->setGeometry(
     QStyle::alignedRect(
-        Qt::LeftToRight,
-        Qt::AlignCenter,
-        this->size(),
-        qApp->desktop()->availableGeometry()
+      Qt::LeftToRight,
+      Qt::AlignCenter,
+      this->size(),
+      qApp->desktop()->availableGeometry()
     )
-);
+  );
   ui->setupUi(this);
   itemSelected = NULL;
   buttonStatus = false; // a variable for flipActiveButtons

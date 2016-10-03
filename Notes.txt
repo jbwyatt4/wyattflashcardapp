@@ -20,8 +20,9 @@ Replace custom dialog with a QAbout dialog??
 -Implement
 Xrandomize copied list
 Xguarantee no unique names (in deck)
-fix renaming not saving bug for decks
-delete file when you delete deck
+Xfix renaming not saving bug for decks
+Xdelete file when you delete deck
+Add demo mode
 
 Add?
 Add spanish characters-most people would use a character map

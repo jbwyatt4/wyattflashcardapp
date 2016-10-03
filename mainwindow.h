@@ -21,14 +21,12 @@
 #include <QTextStream>
 #include <QIODevice>
 
+#include "misc.h"
 #include "aboutdialog.h"
 #include "addcarddialog.h"
 #include "editdeckwindow.h"
 #include "deckitem.h"
 #include "cardviewer.h"
-#include "misc.h"
-
-#define JW_DEBUG
 
 namespace Ui {
 class MainWindow;
