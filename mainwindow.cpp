@@ -111,8 +111,30 @@ void MainWindow::removeDeck(DeckItem *item)
     // then have qt pop off the object from the list, we already have the reference so we don't ahve to catch it
     this->ui->deckListWidget->takeItem(this->ui->deckListWidget->currentRow());
     // now delete
-    item->removeAllCards();
-    delete item;
+    //item->removeAllCards();
+    QString deckName = item->get_name();
+    #ifdef JW_DEBUG
+    qDebug() << "Total number of decks to save: " << deckCardList.count();
+    #endif
+    //deckCardList.removeOne();//in case you decide to use Qt 5.4+ otherwise use code below
+    for(int i=0; i < deckCardList.count(); i++) {
+        //deckCardList[i]->get_name() == item->get_name()
+        if(deckCardList[i] == item) {
+            deckCardList.removeAt(i);
+        }
+    }
+    QFile file(dataLocation() + "/decks/" + deckName);
+    if(!file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
+        #ifdef JW_DEBUG
+        qDebug() << deckName << "File not found";
+        #endif
+    } else {
+        file.remove();
+    }
+
+    #ifdef JW_DEBUG
+    qDebug() << "Total number of decks to save: " << deckCardList.count();
+    #endif
     this->itemSelected = NULL;
 }
 
@@ -297,6 +319,9 @@ void MainWindow::saveDecks() {
         msgBox.exec();
         return;
     }
+    #ifdef JW_DEBUG
+    qDebug() << "Total number of decks to save: " << deckCardList.count();
+    #endif
     for(int i=0; i < deckCardList.count(); i++) {
         QString t(deckCardList[i]->get_name());
         QFile file(dataLocation() + "/decks/" + t);

@@ -5,6 +5,7 @@
 #include <QString>
 #include <QVector>
 #include <QListWidgetItem>
+#include <QDebug>
 
 #include "carditem.h"
 
