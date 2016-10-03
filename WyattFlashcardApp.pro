@@ -38,7 +38,8 @@ FORMS    += mainwindow.ui \
     cardviewer.ui
 
 OTHER_FILES += \
-    Notes.txt
+    Notes.txt \
+    License.txt
 
 RESOURCES += \
     resource.qrc

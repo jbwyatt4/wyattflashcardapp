@@ -1,0 +1,9 @@
+Contents
+1) EULA
+2) LGPL
+
+1)
+Please read this EULA carefully, as it sets out the basis upon which we license the Software for use.
+By clicking "accept agreement" when you first install the Software, you agree to be bound by the provisions of this EULA. If you do not agree to these provisions you may apply for a refund after destroying any copies of the software and showing proof of purchase.
+
+This software is licensed to you. Unless your jurstication specifically allows it you agree not transfer, resell or otherwise propagate the software. This software is not licensed for mission critical use (we would charge alot more if it was!) such as .
