@@ -22,14 +22,12 @@ Xrandomize copied list
 Xguarantee no unique names (in deck)
 Xfix renaming not saving bug for decks
 Xdelete file when you delete deck
+X--Use /.local directory to store data.
+Xhandles mutiple users, AND mutiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)
 Add demo mode
 
 Add?
 Add spanish characters-most people would use a character map
-
--Misc Design Notes
---Use /.local directory to store data.
-handles mutiple users, AND mutiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)
 
 -Add shortcuts
 MainDialog

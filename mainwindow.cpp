@@ -8,9 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    #ifdef Q_OS_WIN
-  setWindowIcon(QIcon(":icon.ico"));
-#endif
   // warning, goes to left monitor on two monitor setup
   this->setGeometry(
     QStyle::alignedRect(
@@ -32,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(this, SIGNAL(runCardViewer(DeckItem *)), &cardViewer, SLOT(receiveData(DeckItem *)));
 
   loadDecks();
+
+  #ifdef DEMO
+  setWindowTitle(QString("DEMO Version - Wyatt's Simple Flashcard App"));
+  #endif
 
 }
 
@@ -224,6 +225,12 @@ void MainWindow::on_addDeckButton_clicked()
           QMessageBox msgBox;
           msgBox.setText(tr("Duplicate Deck already exists: ") + text);
           msgBox.exec();
+      #ifdef DEMO
+      } else if(this->deckCardList.count() > 0) {
+          QMessageBox msgBox;
+          msgBox.setText(tr("Demo version may only have 1 deck"));
+          msgBox.exec();
+      #endif
       } else {
         addDeck(text);
       }

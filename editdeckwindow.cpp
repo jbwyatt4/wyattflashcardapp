@@ -63,7 +63,14 @@ void EditDeckWindow::receiveData(DeckItem *q) { // from MainWindow
 }
 
 void EditDeckWindow::receiveAddCardData(QStringList sl) {
-
+    #ifdef DEMO
+    if(this->currentDeck->cardList.count() > 1) {
+        QMessageBox msgBox;
+        msgBox.setText(tr("Demo version may only have 3 cards per deck"));
+        msgBox.exec();
+        return;
+    }
+    #endif
     CardItem * card = new CardItem(sl[0], sl[1]);
     this->itemSelected = card;
 
