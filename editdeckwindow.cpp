@@ -183,6 +183,7 @@ void EditDeckWindow::on_cardListWidget_itemClicked(QListWidgetItem *item)
 void EditDeckWindow::on_deleteCardButton_clicked()
 {
     ui->cardListWidget->takeItem(this->ui->cardListWidget->currentRow());
+    ui->cardListWidget->setCurrentItem(NULL); // deselect any item, otherwise will go to next item, while buttons are unselected
     for(int i = 0; i < this->currentDeck->cardList.count(); i++) {
         if(this->currentDeck->cardList[i] == this->itemSelected) {
             this->currentDeck->cardList.removeAt(i);

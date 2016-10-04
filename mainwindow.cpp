@@ -167,6 +167,7 @@ void MainWindow::select_item(DeckItem *item)
 // Called when we delete
 void MainWindow::deselect_item()
 {
+    //ui->deckListWidget->setCurrentItem(NULL); //doesn't work here
     itemSelected = NULL;
     checkButtons();
 }
