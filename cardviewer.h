@@ -40,7 +40,7 @@ public:
 private slots:
     void on_leaveButton_clicked();
 
-    void receiveData(DeckItem *l);
+    void receiveData(DeckItem *l, bool reverse);
 
     void on_nextButton_clicked();
 
@@ -55,6 +55,7 @@ private:
     CardItem * cardItem = NULL;
     int cardNumber;
     bool buttonStatus;
+    bool reverse;// = false;
 };
 
 #endif // CARDVIEWER_H

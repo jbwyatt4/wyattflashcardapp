@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   // edw is not a poniter, so use reference
   connect(this, SIGNAL(get_itemselected(DeckItem *)), &edw, SLOT(receiveData(DeckItem *)));
-  connect(this, SIGNAL(runCardViewer(DeckItem *)), &cardViewer, SLOT(receiveData(DeckItem *)));
+  connect(this, SIGNAL(runCardViewer(DeckItem *, bool)), &cardViewer, SLOT(receiveData(DeckItem *, bool)));
 
   loadDecks();
 
@@ -191,6 +191,7 @@ bool MainWindow::checkForDuplicateDeck(QString text) {
     return false;
 }
 
+
 void MainWindow::gotoEditDeckWindow(DeckItem *item) {
 
     emit(get_itemselected(item));
@@ -202,10 +203,17 @@ void MainWindow::gotoEditDeckWindow(DeckItem *item) {
 
 void MainWindow::on_runDeckButton_clicked()
 {
-    emit(runCardViewer(itemSelected));
+    emit(runCardViewer(itemSelected, false));
     cardViewer.setModal(true);
     cardViewer.exec();
 
+}
+
+void MainWindow::on_runFlippedDeckButton_clicked()
+{
+    emit(runCardViewer(itemSelected, true));
+    cardViewer.setModal(true);
+    cardViewer.exec();
 }
 
 void MainWindow::on_addDeckButton_clicked()
@@ -402,3 +410,5 @@ QString MainWindow::dataLocation() {
     #endif
 
 }
+
+

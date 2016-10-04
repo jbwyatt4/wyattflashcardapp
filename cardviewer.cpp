@@ -20,7 +20,7 @@ void CardViewer::on_leaveButton_clicked()
     this->close();
 }
 
-void CardViewer::receiveData(DeckItem * l) {
+void CardViewer::receiveData(DeckItem * l, bool reverse) {
     clearData();
     QVectorIterator<CardItem *> i(l->cardList);
     while(i.hasNext()) {
@@ -34,6 +34,7 @@ void CardViewer::receiveData(DeckItem * l) {
         flipActiveButtons(false);
     // n > 1 case
     } else {
+        this->reverse = reverse;
         nextCard();
     }
 }
@@ -161,7 +162,11 @@ void CardViewer::on_shuffleButton_clicked()
 void CardViewer::nextCard() {
     cardNumber = pickRandom();
     cardItem = getCurrentCard(cardNumber);
-    isFrontShowing = true;
+    if(reverse == true) {
+        isFrontShowing = !true;
+    } else {
+        isFrontShowing = true;
+    }
     setCurrentCard(cardItem);
     updateMyDisplay();
 }

@@ -95,9 +95,11 @@ private slots:
 
     void on_renameDeckButton_clicked();
 
+    void on_runFlippedDeckButton_clicked();
+
 signals:
     void get_itemselected(DeckItem *);
-    void runCardViewer(DeckItem *);
+    void runCardViewer(DeckItem *, bool reverse);
 
 private:
     Ui::MainWindow *ui;

@@ -78,6 +78,9 @@
       <height>27</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>Opens a flashcard slideshow that allows you to test yourself.</string>
+    </property>
     <property name="text">
      <string>Run Deck</string>
     </property>
@@ -106,6 +109,22 @@
     </property>
     <property name="text">
      <string>Rename Deck</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="runFlippedDeckButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>380</y>
+      <width>271</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>All flashcards will be flipped</string>
+    </property>
+    <property name="text">
+     <string>Run Deck (flipped)</string>
     </property>
    </widget>
   </widget>
