@@ -32,6 +32,7 @@ allow slideshow to run with cards flipped, how ctrl-r?
 Add?
 Add spanish characters-most people would use a character map
 flipped idicator?
+paid card packs as dlc?
 
 -Add shortcuts
 MainDialog
