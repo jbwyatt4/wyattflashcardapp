@@ -24,10 +24,13 @@ Xfix renaming not saving bug for decks
 Xdelete file when you delete deck
 X--Use /.local directory to store data.
 Xhandles mutiple users, AND mutiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)
-Add demo mode
+XAdd demo mode
+keyboard shortcuts for slideshow, both asdw and arrow keys
+disable dragging the windows by the border to expand/shrink
 
 Add?
 Add spanish characters-most people would use a character map
+flipped idicator?
 
 -Add shortcuts
 MainDialog

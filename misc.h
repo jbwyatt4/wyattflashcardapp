@@ -4,7 +4,7 @@
 #include <QString>
 
 #define JW_DEBUG
-#define DEMO
+//#define DEMO
 
 class Misc
 {

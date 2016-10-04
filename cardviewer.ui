@@ -66,6 +66,9 @@
    <property name="text">
     <string>Flip</string>
    </property>
+   <property name="shortcut">
+    <string>S, Down</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
@@ -81,6 +84,9 @@
    </property>
    <property name="text">
     <string>Next</string>
+   </property>
+   <property name="shortcut">
+    <string>Right, D</string>
    </property>
   </widget>
   <widget class="QPushButton" name="shuffleButton">
@@ -100,6 +106,9 @@
    </property>
    <property name="text">
     <string>Shuffle Back</string>
+   </property>
+   <property name="shortcut">
+    <string>W, Up</string>
    </property>
   </widget>
   <widget class="QLabel" name="cards_left">

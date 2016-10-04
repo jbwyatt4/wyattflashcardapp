@@ -58,6 +58,8 @@ private slots:
 
     void on_cardListWidget_itemClicked(QListWidgetItem *item);
 
+    void on_deleteCardButton_clicked();
+
 signals:
     void sendEditCardDataToEdit(QStringList);
 

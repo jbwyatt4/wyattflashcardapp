@@ -179,3 +179,15 @@ void EditDeckWindow::on_cardListWidget_itemClicked(QListWidgetItem *item)
     this->itemSelected = a;
     checkButtons();
 }
+
+void EditDeckWindow::on_deleteCardButton_clicked()
+{
+    ui->cardListWidget->takeItem(this->ui->cardListWidget->currentRow());
+    for(int i = 0; i < this->currentDeck->cardList.count(); i++) {
+        if(this->currentDeck->cardList[i] == this->itemSelected) {
+            this->currentDeck->cardList.removeAt(i);
+        }
+    }
+    itemSelected = NULL;
+    this->flipActiveButtons(false);
+}
