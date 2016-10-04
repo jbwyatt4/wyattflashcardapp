@@ -28,6 +28,7 @@ XAdd demo mode
 Xallow slideshow to run with cards flipped, how ctrl-r?
 keyboard shortcuts for slideshow, both asdw and arrow keys
 disable dragging the windows by the border to expand/shrink
+add icon, you need it for the unity toolbar and windows
 
 Add?
 Add spanish characters-most people would use a character map
