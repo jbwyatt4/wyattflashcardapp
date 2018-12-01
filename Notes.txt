@@ -1,19 +1,6 @@
 -Release gotchas
-Change the youtube link to your own!
+Change the Youtube link to your own!
 Disable debugging define
-Build as release
-
--Design Questions
-Approach 1 is to store all decka nd card data in a qlistwidgetitem
-Approach 2 is to extern a list and use an adapter
-I want to use an extern list of carddata (approach 2), but...
-How do I select an item? if I assume that all names are unique
-(which for flash cards they should be) then I could use that.
-In fact, approach 1 would not allow me to easily gurantee a list was unique.
-Well it's actually doable. Just alot of code.
-
-Infact. A third approach just hit me. Why not just make two classes that inherit from
-qlistwidgetitem and pass them to the qlistwidget.
 
 Replace custom dialog with a QAbout dialog??
 
@@ -23,7 +10,7 @@ Xguarantee no unique names (in deck)
 Xfix renaming not saving bug for decks
 Xdelete file when you delete deck
 X--Use /.local directory to store data.
-Xhandles mutiple users, AND mutiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)
+Xhandles multiple users, AND multiple apps, a demo so a flash cards are moved over (NOTE THIS IN THE END OF DEMO DIALOG)
 XAdd demo mode
 Xallow slideshow to run with cards flipped, how ctrl-r?
 keyboard shortcuts for slideshow, both asdw and arrow keys
@@ -31,9 +18,8 @@ disable dragging the windows by the border to expand/shrink
 add icon, you need it for the unity toolbar and windows
 
 Add?
-Add spanish characters-most people would use a character map
-flipped idicator?
-paid card packs as dlc?
+Add Spanish characters-most people would use a character map
+flipped indicator?
 
 -Add shortcuts
 MainDialog
