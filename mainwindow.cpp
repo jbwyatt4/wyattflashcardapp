@@ -4,6 +4,11 @@
 // see this to setup an icon in qlistwidgetview
 // https://www.youtube.com/watch?v=2YRAJt-LbkM
 
+/*
+ * MainWindow manages decks, with a subwindow that manages the cards, with a
+ * deeper subwindow that views the cards or changes them.
+ */
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -33,7 +38,6 @@ MainWindow::MainWindow(QWidget *parent) :
   #ifdef DEMO
   setWindowTitle(QString("DEMO Version - Wyatt's Simple Flashcard App"));
   #endif
-
 }
 
 MainWindow::~MainWindow()
@@ -410,5 +414,3 @@ QString MainWindow::dataLocation() {
     #endif
 
 }
-
-
